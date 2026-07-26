@@ -1,601 +1,803 @@
 ---
 // src/pages/index.astro
-
-const lang = Astro.url.searchParams.get('lang') || 'en';
-
-const content = {
-  en: {
-    navPhilosophy: "Philosophy",
-    navFramework: "Framework",
-    navBlueprint: "Blueprint",
-    navValuation: "Valuation",
-    navConsult: "Consultation",
-
-    heroTag: "ADAPTIVE DEMAND SYSTEM v2.1",
-    heroTitle: "We design unclonable logistics, engineered for absolute dominance.",
-    heroSubtitle: "Generic SaaS platforms constrain enterprise architecture. We forge warehouse-native data planes and custom modular supply chains. Total operational sovereignty is no longer an asset—it's a core requirement for those who refuse to compete, but aim to lead.",
-    
-    orchestratedTitle: "Orchestrated Demand Network Architecture",
-    col1Tag: "1. ADAPTIVE INGESTION",
-    col1Title: "Demand Capture Signal",
-    col1Desc: "Tear down legacy software silos. Ingest real-time market disruptions, B2B procurement velocity, and volatile e-commerce consumer demand directly into a unified ledger.",
-    col2Tag: "2. INTERCONNECTED EXECUTION",
-    col2Title: "Unified Supply Chain Fabric",
-    col2Desc: "Synchronize distributed vendor nodes, cross-docking points, and localized fulfillment layers natively on a single, composable data infrastructure.",
-    col3Tag: "3. AUTONOMOUS VALUATION",
-    col3Title: "Operational Control Plane",
-    col3Desc: "Deploy hyper-tailored warehouse routing and rule-based workflow pipelines that auto-optimize multi-carrier fulfillment based on real-time margin thresholds.",
-
-    blueprintTitle: "The Modular Logistics Blueprint",
-    blueprintSub: "Decoupled infrastructure engineered to eliminate single points of failure across enterprise and e-commerce stacks.",
-    layer4Title: "LAYER 4: COMPOSABLE END-TO-END SUPPLY CHAIN",
-    layer4Desc: "Complete decoupling of consumer-facing frontends (Medusa.js) from underlying heavy ERP/WMS backends, guaranteeing zero frontend latency.",
-    layer3Title: "LAYER 3: MODULAR LOGISTICS MICROSERVICES",
-    layer3Desc: "Independent service units running real-time carrier rate-shopping, regional multi-warehouse routing, and elastic high-density asset tracking.",
-    layer2Title: "LAYER 2: FUNCTIONAL LOGISTIC NODES",
-    layer2Desc: "Localized intelligence layers unifying retail supply routes with aggregated e-commerce multi-tenant inventory pools.",
-    layer1Title: "LAYER 1: CUSTOMER VALUE FREIGHT TELEMETRY",
-    layer1Desc: "Proprietary telemetry tracking data pipelines that provide client stakeholders and end consumers with sub-millisecond status calculations.",
-
-    tierTag: "PREMIUM SYSTEM ENGAGEMENT",
-    tierTitle: "Engineered Valuation Tier",
-    tier1Name: "CORE STRATEGY",
-    tier1Price: "$65,000+",
-    tier1Desc: "Complete supply chain audit, modular logistics architecture mapping, and baseline cloud data pipeline setup designed for high-density scalability.",
-    tier2Name: "UNIFIED NETWORK",
-    tier2Price: "$100,000+",
-    tier2Desc: "Multi-carrier integration, automated omnichannel warehouse synchronization, unified data fabric deployment, and custom telemetry dashboarding.",
-    tier3Name: "SOVEREIGNTY ELITE",
-    tier3Price: "$150,000",
-    tier3Desc: "Absolute digital sovereignty. Custom proprietary network algorithms, automated warehouse routing engines, and 1-on-1 dedicated system architect support.",
-
-    ctaTitle: "DIRECT SYSTEM ARCHITECT BRIEFING",
-    ctaDesc: "We eliminate automated sales funnels, generic forms, and gatekeepers. Engage directly with our systems architecture team via the encrypted live concierge interface below for an immediate deployment audit.",
-    ctaStatus: "SYSTEMS ONLINE — ENCRYPTED CONCIERGE ACTIVE",
-
-    stat1Title: "+120% Growth",
-    stat1Desc: "Average scale of operations achieved within 12 months post-deployment.",
-    stat2Title: "40+ Clients",
-    stat2Desc: "Enterprise entities and scale-up brands currently utilizing our composable infrastructure components.",
-    stat3Title: "98% Retention",
-    stat3Desc: "Long-term client integration retention demonstrating absolute operational reliance."
-  },
-  th: {
-    navPhilosophy: "ปรัชญาองค์กร",
-    navFramework: "กรอบการออกแบบ",
-    navBlueprint: "พิมพ์เขียวโมดูลาร์",
-    navValuation: "เกณฑ์มูลค่า",
-    navConsult: "แถลองการณ์",
-
-    heroTag: "ระบบโลจิสติกส์เฉพาะคุณ",
-    heroTitle: "ระบบโลจิสติกส์ที่ได้เปรียบเฉพาะคุณ",
-    heroSubtitle: "ซอฟต์แวร์สำเร็จรูปทั่วไปมักสร้างข้อจำกัดให้กับห่วงโซ่อุปทานของคุณ เราจึงออกแบบสถาปัตยกรรมข้อมูลแบบแยกส่วน (Composable) ที่เชื่อมต่อคลังสินค้า ข้อมูลซัพพลายเชน และระบบอีคอมเมิร์ซเข้าด้วยกัน เพื่อสิทธิ์ในการควบคุมตรรกะทางธุรกิจของตนเองอย่างสมบูรณ์โดยไม่ต้องพึ่งพาระบบผูกขาด",
-    
-    orchestratedTitle: "สถาปัตยกรรมโครงข่ายดีมานด์และซัพพลายเชน",
-    col1Tag: "1. ADAPTIVE INGESTION",
-    col1Title: "ระบบเฝ้าระวังและรับสัญญาณดีมานด์",
-    col1Desc: "ผสานสัญญาณความผันผวนจากคำสั่งซื้อทั้งฝั่ง B2B และแพลตฟอร์ม B2C E-commerce เข้าสู่ระบบประมวลผลส่วนกลางโดยตรง ขจัดปัญหาข้อมูลตกหล่นระหว่างชั้นระบบ",
-    col2Tag: "2. INTERCONNECTED EXECUTION",
-    col2Title: "โครงข่ายซัพพลายเชนที่เป็นหนึ่งเดียว",
-    col2Desc: "บูรณาการข้อมูลจากผู้ผลิต คลังสินค้ากระจายตัว (Multi-warehouse) และจุดขนส่งท้องถิ่น ให้เคลื่อนไหวสอดประสานกันบนโครงสร้างข้อมูลพื้นฐาน (Unified Data Fabric) ชุดเดียว",
-    col3Tag: "3. AUTONOMOUS VALUATION",
-    col3Title: "ระบบควบคุมการปฏิบัติการอัจฉริยะ",
-    col3Desc: "วางตรรกะการกระจายสินค้าและจัดเส้นทางรถขนส่งโดยอัตโนมัติ ตามเงื่อนไขต้นทุน อัตรากำไรเรียลไทม์ และลำดับความสำคัญของประเภทช่องทางจัดจำหน่าย",
-
-    blueprintTitle: "พิมพ์เขียวสถาปัตยกรรมโลจิสติกส์แบบแยกส่วน",
-    blueprintSub: "โครงสร้างสถาปัตยกรรมแบบแยกเลเยอร์เพื่อขจัดปัญหาคอขวดและรองรับทั้งโครงข่ายโลจิสติกส์ขนาดใหญ่และระบบจัดการคลังสินค้าอีคอมเมิร์ซ",
-    layer4Title: "LAYER 4: COMPOSABLE END-TO-END SUPPLY CHAIN",
-    layer4Desc: "การแยกส่วนระบบหน้าบ้าน (Storefront) ออกจากระบบควบคุมการปฏิบัติการหลังบ้านอย่างเด็ดขาด ช่วยให้การปรับเปลี่ยน UI หน้าเว็บไม่กระทบต่อความเสถียรของคลังสินค้า",
-    layer3Title: "LAYER 3: MODULAR LOGISTICS MICROSERVICES",
-    layer3Desc: "ไมโครเซอร์วิสอิสระในการคำนวณค่าจัดส่งของแต่ละผู้ให้บริการ (Carrier Routing) และระบบจัดสรรคลังสินค้าอัจฉริยะที่ทำงานแยกจากกันเป็นเอกเทศ",
-    layer2Title: "LAYER 2: FUNCTIONAL LOGISTIC NODES",
-    layer2Desc: "หน่วยเชื่อมโยงการปฏิบัติการส่วนภูมิภาค ผสานคลังสินค้าดั้งเดิมเข้ากับพูลสินค้าคงคลังออนไลน์ (Aggregated Inventory) ป้องกันปัญหาสินค้าล้นหรือขาดแคลน",
-    layer1Title: "LAYER 1: CUSTOMER VALUE FREIGHT TELEMETRY",
-    layer1Desc: "ระบบท่อส่งข้อมูล (Data Pipeline) ติดตามสถานะสินค้าที่มีความหน่วงต่ำ เพื่อการตรวจสอบความเคลื่อนไหวของสินค้าข้ามพรมแดนได้อย่างแกล้วกล้าแม่นยำ",
-
-    tierTag: "PREMIUM SYSTEM ENGAGEMENT",
-    tierTitle: "ระดับการพัฒนาตามความต้องการเฉพาะของธุรกิจ",
-    tier1Name: "CORE STRATEGY (กลยุทธ์หลัก)",
-    tier1Price: "$65,000+",
-    tier1Desc: "การวิเคราะห์โครงสร้างซัพพลายเชนเชิงลึก การจัดวางพิมพ์เขียวสถาปัตยกรรมระบบโลจิสติกส์ และวางฐานข้อมูลคลาวด์แกนหลักเพื่อรองรับการขยายตัว",
-    tier2Name: "UNIFIED NETWORK (เครือข่ายบูรณาการ)",
-    tier2Price: "$100,000+",
-    tier2Desc: "เชื่อมต่อระบบขนส่งหลากหลายค่ายเต็มรูปแบบ ซิงค์ข้อมูลสินค้าคงคลังออมนิแชนเนลอัตโนมัติ พร้อมการวางระบบ Data Fabric และแดชบอร์ดควบคุม",
-    tier3Name: "SOVEREIGNTY ELITE (เอกสิทธิ์อธิปไตยดิจิทัล)",
-    tier3Price: "$150,000",
-    tier3Desc: "สิทธิ์ครอบครองกรรมสิทธิ์ระบบและตรรกะทางธุรกิจทั้งหมด 100% พัฒนาอัลกอริทึมจัดเส้นทางเฉพาะตัว พร้อมการดูแลอย่างใกล้ชิดจากวิศวกรผู้ออกแบบระบบ",
-
-    ctaTitle: "ปรึกษาวิศวกรผู้ออกแบบระบบโดยตรง",
-    ctaDesc: "เราไม่มีระบบคอลเซ็นเตอร์ พนักงานขาย หรือแบบฟอร์มลงทะเบียนทั่วไป หากต้องการตรวจสอบข้อจำกัดหรือวิเคราะห์โครงสร้างระบบปัจจุบัน สามารถเปิดฉากสนทนาผ่านระบบ Live Concierge เข้ารหัสที่มุมขวาล่างเพื่อคุยกับฝ่ายสถาปัตยกรรมระบบได้ทันที",
-    ctaStatus: "ระบบเปิดใช้งานแล้ว — ช่องทางติดต่อส่วนบุคคลพร้อมบริการ",
-
-    stat1Title: "+120% Growth",
-    stat1Desc: "อัตราการขยายตัวของขีดความสามารถในการปฏิบัติการเฉลี่ยภายใน 12 เดือนหลังเปิดใช้งาน",
-    stat2Title: "40+ Clients",
-    stat2Desc: "องค์กรธุรกิจและแบรนด์อีคอมเมิร์ซแถวหน้าที่ไว้วางใจเลือกใช้งานชิ้นส่วนสถาปัตยกรรมระบบของเรา",
-    stat3Title: "98% Retention",
-    stat3Desc: "อัตราการรักษาระบบและใช้งานร่วมกันในระยะยาว สะท้อนความเสถียรในระบบปฏิบัติการ"
-  }
-};
-
-const t = content[lang] || content.en;
-const blueprintImgSrc = "/Images/blueprint-3d.jpeg"; 
+// ADS v2.1 — UltraCompetitive Premium Sovereign Storefront
+// Design Identity: Todor Dimov Minimal Oversize Typography (Dark Edition - Vibrant Orange Accent)
 ---
 
-<html lang={lang}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>UltraCompetitive</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UltraCompetitive | Sovereign Logistics & Supply Chain Architecture</title>
+    
+    <script src="//code.tidio.co/phnlyg5kum5wnygb7aqtmzluecmufqao.js" async></script>
+
     <style>
+      /* ------------------------------------------------------------------- */
+      /* 🎨 DESIGN SYSTEM & ARCHITECTURE PRINCIPLES (Todor Dimov Inspired)    */
+      /* ------------------------------------------------------------------- */
       :root {
-        --bg: #030303;
-        --foreground: #ffffff;
-        --muted: #666666;
-        --accent: #ff9f00; 
-        --border: #141414; 
+        --bg-pure: #030712;
+        --bg-surface: #090d16;
+        --brand-gold: #FF6B00; /* Updated to Vibrant Orange #FF6B00 */
+        --brand-orange: #FF6B00; 
+        --brand-blue: #2563eb;
+        --text-pure: #ffffff;
+        --text-muted: #8292a8;
+        --text-dim: #475569;
+        --border-subtle: #1e293b;
       }
-      body {
-        background-color: var(--bg);
-        color: var(--foreground);
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+      * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-        line-height: 1.5;
       }
+
+      html {
+        scroll-behavior: smooth;
+        background-color: var(--bg-pure);
+      }
+
+      body {
+        background-color: var(--bg-pure);
+        color: var(--text-pure);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* 🌐 Navigation Header Layout Structure */
+      header {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2.5rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .logo {
+        font-size: 1.1rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .logo span { color: var(--brand-gold); }
+
+      nav {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+      }
+
+      /* 💡 CONTROLLER: คัดแยกและควบคุมการซ่อน Anchor Link บน Mobile */
+      .nav-links {
+        display: none;
+        gap: 2.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .nav-links {
+          display: flex;
+        }
+      }
+
+      nav a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+      nav a:hover { color: var(--text-pure); }
+
+      /* 🌐 Language Switcher Widget Setup */
+      .lang-switcher {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        border-left: none;
+        padding-left: 0;
+      }
+
+      @media (min-width: 768px) {
+        .lang-switcher {
+          border-left: 1px solid var(--border-subtle);
+          padding-left: 1.5rem;
+        }
+      }
+
+      .lang-btn {
+        color: var(--text-dim);
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      .lang-btn.active {
+        color: var(--brand-gold);
+      }
+      .lang-btn:hover { color: var(--text-pure); }
+
+      /* 📦 Structural Layout Container */
       .container {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
         padding: 0 2rem;
       }
-      header {
-        border-bottom: 1px solid var(--border);
-        position: sticky;
-        top: 0;
-        background: rgba(3, 3, 3, 0.85);
-        backdrop-filter: blur(12px);
-        z-index: 100;
-      }
-      .header-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2rem 0;
-      }
-      .brand-logo {
-        font-weight: 900;
-        font-size: 1.1rem;
-        letter-spacing: 0.05em;
-        text-decoration: none;
-        color: var(--foreground);
-      }
-      .brand-logo span { color: var(--accent); }
-      .nav-menu { display: flex; gap: 2.5rem; }
-      .nav-link {
-        color: var(--muted);
-        text-decoration: none;
-        font-size: 0.85rem;
-        letter-spacing: 0.03em;
-        transition: color 0.2s ease;
-      }
-      .nav-link:hover { color: var(--accent); }
-      .lang-switch {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.8rem;
-        letter-spacing: 0.05em;
-        border: 1px solid #1a1a1a;
-        padding: 0.4rem 0.8rem;
-        border-radius: 4px;
-      }
-      .lang-switch a {
-        color: var(--muted);
-        text-decoration: none;
-        transition: color 0.2s ease;
-      }
-      .lang-switch a:hover { color: var(--accent); }
-      .lang-switch a.active { color: var(--accent); font-weight: bold; }
+
+      /* 🏛️ Hero Section: Oversize Typography Hierarchy */
       .hero-section {
-        padding: 12rem 0 8rem 0;
-        text-align: center;
-        max-width: 960px;
-        margin: 0 auto;
+        padding: 7rem 0 5rem 0;
+        max-width: 1050px;
       }
-      .tagline {
-        color: var(--accent);
-        text-transform: uppercase;
-        font-size: 0.75rem;
-        letter-spacing: 0.2em;
-        margin-bottom: 2rem;
-        display: block;
-        font-weight: 600;
-      }
-      h1 {
-        font-size: 3.8rem;
+
+      .hero-section h1 {
+        font-size: clamp(2.2rem, 5vw, 4.8rem);
+        line-height: 1.12;
         font-weight: 800;
-        line-height: 1.15;
         letter-spacing: -0.03em;
-        margin: 0 0 2.5rem 0;
+        margin-bottom: 2rem;
+        color: var(--text-pure);
       }
+
+      .hero-section h1 span.gold { color: var(--brand-gold); }
+      .hero-section h1 span.muted { color: var(--text-dim); }
+
       .hero-desc {
-        color: #999999;
-        font-size: 1.1rem;
-        line-height: 1.7;
+        font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+        color: var(--text-muted);
         max-width: 750px;
-        margin: 0 auto;
+        line-height: 1.6;
+        margin-bottom: 3rem;
       }
-      .grid-section {
-        padding: 10rem 0;
-        border-top: 1px solid var(--border);
+
+      /* 🎯 Call to Action (Tidio Trigger Integration) */
+      .cta-trigger {
+        display: inline-flex;
+        align-items: center;
+        background: transparent;
+        color: var(--text-pure);
+        border: 1px solid var(--brand-gold);
+        padding: 1rem 2.2rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border-radius: 50px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       }
-      .section-title {
-        text-align: center;
-        font-size: 2rem;
+      .cta-trigger:hover {
+        background: var(--brand-gold);
+        color: #000000;
+        box-shadow: 0 0 25px rgba(255, 107, 0, 0.4);
+        transform: translateY(-2px);
+      }
+
+      /* 📊 Section Sub-headers */
+      .section-meta {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--brand-gold);
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+      }
+
+      /* 🧩 Todor Dimov Style Split Grid Layout */
+      .split-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        padding: 6rem 0;
+        border-top: 1px solid var(--border-subtle);
+      }
+      @media (min-width: 968px) {
+        .split-grid {
+          grid-template-columns: 4fr 6fr;
+          gap: 6rem;
+        }
+      }
+
+      .grid-sticky-left {
+        height: auto;
+      }
+      @media (min-width: 968px) {
+        .grid-sticky-left {
+          position: sticky;
+          top: 4rem;
+          height: fit-content;
+        }
+      }
+
+      .grid-sticky-left h2 {
+        font-size: clamp(2rem, 3.5vw, 3.5rem);
+        line-height: 1.1;
         font-weight: 700;
         letter-spacing: -0.02em;
-        margin-bottom: 6rem;
       }
-      .features-grid {
+
+      /* 📑 Minimal Data Rows */
+      .data-row {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2.5rem;
+        grid-template-columns: 1fr;
+        padding: 3rem 0;
+        border-bottom: 1px solid var(--border-subtle);
+        gap: 1.5rem;
       }
-      .feature-card {
-        background: #060606;
-        border: 1px solid var(--border);
-        padding: 3.5rem 2.5rem;
-        border-radius: 4px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      @media (min-width: 640px) {
+        .data-row {
+          grid-template-columns: auto 1fr auto;
+          gap: 3rem;
+        }
       }
-      .feature-card:hover {
-        border-color: #222222;
-        background: #0a0a0a;
-      }
-      .card-tag {
-        color: var(--accent);
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        display: block;
-        margin-bottom: 1.5rem;
+      .data-row:first-child { padding-top: 0; }
+
+      .row-index {
+        font-size: 0.9rem;
         font-weight: 600;
+        color: var(--text-dim);
+        padding-top: 0.2rem;
       }
-      .card-title {
-        font-size: 1.35rem;
+
+      .row-content h3 {
+        font-size: 1.5rem;
         font-weight: 600;
-        margin: 0 0 1.25rem 0;
-        letter-spacing: -0.01em;
+        margin-bottom: 1rem;
+        color: var(--text-pure);
       }
-      .card-desc {
-        color: #888888;
+      .row-content p {
+        color: var(--text-muted);
         font-size: 0.95rem;
         line-height: 1.6;
-        margin: 0;
+        max-width: 580px;
       }
-      .blueprint-section {
-        padding: 10rem 0;
-        text-align: center;
-        border-top: 1px solid var(--border);
+
+      /* 🗺️ Blueprint Image Showcase Container (Mobile Optimized Scroll) */
+      .blueprint-container {
+        padding: 4rem 0 6rem 0;
+        border-top: 1px solid var(--border-subtle);
       }
-      .blueprint-wrapper {
-        max-width: 850px;
-        margin: 5rem auto;
-        background: #050505;
-        border: 1px solid var(--border);
-        padding: 2.5rem;
+
+      .scroll-hint-text {
+        font-size: 0.75rem;
+        color: var(--text-dim);
+        margin-bottom: 0.75rem;
+        text-align: right;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.4rem;
+      }
+      @media (min-width: 768px) {
+        .scroll-hint-text {
+          display: none;
+        }
+      }
+
+      .blueprint-scroll-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.75rem;
+      }
+      .blueprint-scroll-wrapper::-webkit-scrollbar {
+        height: 4px;
+      }
+      .blueprint-scroll-wrapper::-webkit-scrollbar-track {
+        background: rgba(30, 41, 59, 0.5);
         border-radius: 4px;
       }
+      .blueprint-scroll-wrapper::-webkit-scrollbar-thumb {
+        background: var(--brand-gold);
+        border-radius: 4px;
+      }
+
+      .blueprint-wrapper {
+        background-color: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: 12px;
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 680px;
+      }
+      @media (min-width: 768px) {
+        .blueprint-wrapper {
+          min-width: 0;
+          width: 100%;
+        }
+      }
+
       .blueprint-img {
         width: 100%;
         height: auto;
-        display: block;
+        object-contain: fit;
+        border-radius: 8px;
+        opacity: 0.92;
+        transition: opacity 0.3s;
       }
-      .blueprint-layers {
+      .blueprint-img:hover { opacity: 1; }
+
+      /* 💳 Valuation Minimal Structure */
+      .valuation-matrix {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 3.5rem;
-        text-align: left;
-        max-width: 900px;
-        margin: 5rem auto 0 auto;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
       }
-      .layer-item {
-        border-left: 2px solid #141414;
-        padding-left: 1.5rem;
-      }
-      .layer-label {
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: #ffffff;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.75rem;
-        display: block;
-      }
-      .layer-desc {
-        color: #777777;
-        font-size: 0.9rem;
-        line-height: 1.6;
-        margin: 0;
-      }
-      .disclosure-container { margin-top: 5rem; }
-      .disclosure-btn {
-        background: transparent;
-        border: 1px solid #1c1c1c;
-        color: var(--foreground);
-        padding: 0.9rem 2.5rem;
-        font-size: 0.85rem;
-        letter-spacing: 0.05em;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        transition: all 0.3s ease;
-        border-radius: 4px;
-      }
-      .disclosure-btn:hover { border-color: var(--accent); background: #080808; }
-      .arrow-icon { transition: transform 0.3s ease; }
-      .hidden-panel {
-        display: grid;
-        grid-template-rows: 0fr;
-        transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        overflow: hidden;
-        text-align: center;
-        max-width: 750px;
-        margin: 1.5rem auto 0 auto;
-        background: #060606;
-        border-radius: 4px;
-      }
-      .panel-inner { min-height: 0; padding: 0 2.5rem; transition: padding 0.3s ease; }
-      .disclosure-container.is-active .hidden-panel { grid-template-rows: 1fr; border: 1px solid #111111; }
-      .disclosure-container.is-active .panel-inner { padding: 2.5rem; }
-      .disclosure-container.is-active .arrow-icon { transform: rotate(180deg); }
-      .tier-section { padding: 10rem 0; border-top: 1px solid var(--border); }
-      .text-center-wrapper { text-align: center; margin-bottom: 5rem; }
-      .text-center-wrapper .tagline { display: inline-block; }
-      .text-center-wrapper .section-title { margin-bottom: 0; }
-      .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-      .tier-card {
-        background: #060606;
-        border: 1px solid #111111;
-        padding: 4rem 2.5rem;
-        border-radius: 4px;
+      .valuation-node {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        padding: 3rem 2.5rem;
+        border-radius: 8px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        transition: all 0.3s ease;
       }
-      .tier-card:hover { border-color: var(--accent); background: #080808; }
-      .tier-name { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.05em; color: #ffffff; line-height: 1.4; }
-      .price-tag { font-size: 2.8rem; font-weight: 800; color: var(--accent); margin: 1.5rem 0; letter-spacing: -0.02em; }
-      .tier-desc { color: #777777; font-size: 0.9rem; line-height: 1.7; margin: 0; }
-      .cta-section {
-        padding: 12rem 0;
-        text-align: center;
-        border-top: 1px solid var(--border);
-        background: linear-gradient(180deg, #030303 0%, #050505 100%);
+      .valuation-node.premium {
+        border-color: var(--brand-gold);
+        box-shadow: 0 0 30px rgba(255, 107, 0, 0.08);
       }
-      .cta-section h2 { font-size: 2.5rem; font-weight: 900; letter-spacing: -0.01em; margin: 0 0 2rem 0; }
-      .cta-desc { color: #888888; font-size: 1.05rem; line-height: 1.8; max-width: 680px; margin: 0 auto 3rem auto; }
-      .live-status-indicator {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        font-size: 0.8rem;
+      .node-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+      }
+      .node-price {
+        font-size: 2.8rem;
+        font-weight: 800;
+        color: var(--brand-gold);
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+      }
+
+      /* 🔄 Data Warehouse Integration Section */
+      .data-warehouse-section {
+        padding: 4rem 2rem;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+        background: rgba(9, 13, 22, 0.6);
+        margin: 5rem 0;
+        border-radius: 12px;
+      }
+      .dw-title {
+        font-size: 0.78rem;
         text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--accent);
+        letter-spacing: 0.2em;
         font-weight: 700;
-        border: 1px solid rgba(250, 159, 0, 0.15);
-        background: rgba(250, 159, 0, 0.02);
-        padding: 0.75rem 1.75rem;
-        border-radius: 100px;
-        user-select: none;
-        transition: background 0.2s ease, border-color 0.2s ease;
+        color: var(--brand-gold);
+        text-align: center;
+        margin-bottom: 2.5rem;
       }
-      .live-status-indicator:hover {
-        background: rgba(250, 159, 0, 0.08);
-        border-color: rgba(250, 159, 0, 0.35);
+      .dw-grid {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem 2.5rem;
       }
-      .pulse-dot {
-        width: 7px;
-        height: 7px;
-        background-color: var(--accent);
-        border-radius: 50%;
-        animation: pulse 1.6s infinite;
+      .dw-card {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1.25rem;
+        border-radius: 8px;
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid var(--border-subtle);
+        transition: all 0.2s ease;
       }
-      @keyframes pulse {
-        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 159, 0, 0.7); }
-        70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(255, 159, 0, 0); }
-        100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 159, 0, 0); }
+      .dw-card:hover {
+        border-color: rgba(255, 107, 0, 0.4);
+        transform: translateY(-2px);
       }
-      .stats-section {
-        padding: 6rem 0 12rem 0;
-        border-top: 1px solid var(--border);
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 4rem;
+      .dw-card span {
+        font-size: 0.88rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--text-pure);
       }
-      .stat-item h3 { font-size: 2.2rem; font-weight: 800; margin: 0 0 1rem 0; letter-spacing: -0.02em; }
-      .stat-item p { color: #555555; font-size: 0.9rem; line-height: 1.6; margin: 0; }
-      @media (max-width: 900px) {
-        .features-grid, .pricing-grid, .blueprint-layers, .stats-section { grid-template-columns: 1fr; gap: 2.5rem; }
-        .nav-menu { display: none; }
-        h1 { font-size: 2.6rem; }
+
+      /* 🎌 Footer Layout */
+      footer {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 6rem 2rem 3rem 2rem;
+        border-top: 1px solid var(--border-subtle);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+        font-size: 0.8rem;
+        color: var(--text-dim);
+      }
+
+      /* 🦾 Language Layers Toggle Logic Mechanics */
+      .lang-layer {
+        display: none;
+      }
+      .lang-layer.active-layer {
+        display: block !important;
       }
     </style>
   </head>
   <body>
 
     <header>
-      <div class="container">
-        <div class="header-wrapper">
-          <a href="#" class="brand-logo">ULTRA<span>COMPETITIVE</span></a>
-          <nav class="nav-menu">
-            <a href="#philosophy" class="nav-link">{t.navPhilosophy}</a>
-            <a href="#framework" class="nav-link">{t.navFramework}</a>
-            <a href="#blueprint" class="nav-link">{t.navBlueprint}</a>
-            <a href="#valuation" class="nav-link">{t.navValuation}</a>
-            <a href="#consultation" class="nav-link">{t.navConsult}</a>
-          </nav>
-          <div class="lang-switch">
-            <a href="?lang=th" class={lang === 'th' ? 'active' : ''}>TH</a>
-            <span style="color: #222;">|</span>
-            <a href="?lang=en" class={lang === 'en' ? 'active' : ''}>EN</a>
-          </div>
+      <div class="logo">Ultra<span>Competitive</span></div>
+      <nav>
+        <div class="nav-links">
+          <a href="#aggregation" onclick="event.preventDefault(); scrollToSection('aggregation');">Aggregation</a>
+          <a href="#architecture" onclick="event.preventDefault(); scrollToSection('architecture');">Architecture</a>
+          <a href="#valuation" onclick="event.preventDefault(); scrollToSection('valuation');">Valuation</a>
         </div>
-      </div>
+        
+        <div class="lang-switcher">
+          <a href="?lang=en" id="btn-en" class="lang-btn" style="text-decoration: none;">EN</a>
+          <span style="color: var(--text-dim); cursor: default;">/</span>
+          <a href="?lang=th" id="btn-th" class="lang-btn" style="text-decoration: none;">TH</a>
+        </div>
+      </nav>
     </header>
 
-    <div class="container">
-      <section id="philosophy" class="hero-section">
-        <span class="tagline">{t.heroTag}</span>
-        <h1>{t.heroTitle}</h1>
-        <p class="hero-desc">{t.heroSubtitle}</p>
-      </section>
+    <!-- =================================================================== -->
+    <!-- 🌐 ENGLISH LANGUAGE LAYER                                           -->
+    <!-- =================================================================== -->
+    <div id="layer-en" class="lang-layer">
+      <main class="container">
+        
+        <!-- 🎯 Hero Section (Executive Copy - EN) -->
+        <section class="hero-section">
+          <h1>Sovereign <span class="gold">Data Pipelines</span> & Enterprise <span class="gold">Supply Chain Infrastructure</span></h1>
+          <p class="hero-desc">Engineered for large-scale enterprise control, proprietary business logic, and multi-facility synchronization.</p>
+          <button class="cta-trigger" onclick="openTidioChat()">Discuss Architecture Blueprint</button>
+        </section>
 
-      <section id="framework" class="grid-section">
-        <h2 class="section-title">{t.orchestratedTitle}</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <span class="card-tag">{t.col1Tag}</span>
-            <h3 class="card-title">{t.col1Title}</h3>
-            <p class="card-desc">{t.col1Desc}</p>
+        <!-- 01 / Aggregation Section -->
+        <section class="split-grid section-aggregation-en" id="aggregation-en">
+          <div class="grid-sticky-left">
+            <div class="section-meta">01 / Functional Core</div>
+            <h2>Internal Operations Aggregation</h2>
           </div>
-          <div class="feature-card">
-            <span class="card-tag">{t.col2Tag}</span>
-            <h3 class="card-title">{t.col2Title}</h3>
-            <p class="card-desc">{t.col2Desc}</p>
-          </div>
-          <div class="feature-card">
-            <span class="card-tag">{t.col3Tag}</span>
-            <h3 class="card-title">{t.col3Title}</h3>
-            <p class="card-desc">{t.col3Desc}</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="blueprint" class="blueprint-section">
-        <span class="tagline">COMPOSABLE DATA INFRASTRUCTURE</span>
-        <h2 class="section-title">{t.blueprintTitle}</h2>
-        <p style="color: #555; margin-top: -4rem; font-size: 1rem;">{t.blueprintSub}</p>
-        <div class="blueprint-wrapper">
-          <img src={blueprintImgSrc} alt="Blueprint Layout" class="blueprint-img" />
-        </div>
-        <div class="blueprint-layers">
-          <div class="layer-item">
-            <span class="layer-label">{t.layer4Title}</span>
-            <p class="layer-desc">{t.layer4Desc}</p>
-          </div>
-          <div class="layer-item">
-            <span class="layer-label">{t.layer3Title}</span>
-            <p class="layer-desc">{t.layer3Desc}</p>
-          </div>
-          <div class="layer-item">
-            <span class="layer-label">{t.layer2Title}</span>
-            <p class="layer-desc">{t.layer2Desc}</p>
-          </div>
-          <div class="layer-item">
-            <span class="layer-label">{t.layer1Title}</span>
-            <p class="layer-desc">{t.layer1Desc}</p>
-          </div>
-        </div>
-        <div class="disclosure-container">
-          <button id="disclosure-trigger" class="disclosure-btn">
-            <span>{lang === 'th' ? 'เจาะลึกตรรกะประมวลผลข้อมูล' : 'Deconstruct Data Architecture'}</span>
-            <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M6 9l6 6 6-6"/>
-            </svg>
-          </button>
-          <div id="disclosure-content" class="hidden-panel">
-            <div class="panel-inner">
-              <p style="color: #888888; line-height: 1.8; font-size: 0.95rem; margin: 0;">
-                {lang === 'th' 
-                  ? "สถาปัตยกรรมทำการตัดขาดเลเยอร์การประมวลผลออกจากกัน ตรรกะของระบบโมดูลาร์โลจิสติกส์และการกระจายสินค้าคงคลังจะถูกกระจายตัวสถิตอยู่บนจุดประมวลผลที่ใกล้ผู้ใช้ที่สุด" 
-                  : "The architecture decoupling prevents any runtime server queries during client-side inspection. Layered schemas reside natively inside the light DOM pool."
-                }
-              </p>
+          <div>
+            <div class="data-row">
+              <span class="row-index">01</span>
+              <div class="row-content">
+                <h3>Multi-Facility Synchronization</h3>
+                <p>Consolidating disparate data streams across production hubs into a unified operational layer. Eliminating latency between inventory deployment and actual warehouse capability.</p>
+              </div>
+            </div>
+            <div class="data-row">
+              <span class="row-index">02</span>
+              <div class="row-content">
+                <h3>Proprietary Logic Ownership</h3>
+                <p>Bypassing the constraints of rigid SaaS platforms. Your transactional flows, routing algorithms, and resource allocation logic are engineered natively within your secure perimeter.</p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="valuation" class="tier-section">
-        <div class="text-center-wrapper">
-          <span class="tagline">{t.tierTag}</span>
-          <h2 class="section-title">{t.tierTitle}</h2>
-        </div>
-        <div class="pricing-grid">
-          <div class="tier-card">
-            <span class="tier-name">{t.tier1Name}</span>
-            <div class="price-tag">{t.tier1Price}</div>
-            <p class="tier-desc">{t.tier1Desc}</p>
-          </div>
-          <div class="tier-card">
-            <span class="tier-name">{t.tier2Name}</span>
-            <div class="price-tag">{t.tier2Price}</div>
-            <p class="tier-desc">{t.tier2Desc}</p>
-          </div>
-          <div class="tier-card">
-            <span class="tier-name">{t.tier3Name}</span>
-            <div class="price-tag">{t.tier3Price}</div>
-            <p class="tier-desc">{t.tier3Desc}</p>
-          </div>
-        </div>
-      </section>
+        <!-- 02 / System Blueprints (Horizontal Mobile Scroll) -->
+        <section class="blueprint-container section-architecture-en" id="architecture-en">
+          <div class="section-meta">02 / System Blueprints</div>
+          <h2 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 2rem; letter-spacing: -0.02em;">The Modular Logistics Blueprint</h2>
+          
+          <p class="scroll-hint-text">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+            Scroll horizontally to view details
+          </p>
 
-      <section id="consultation" class="cta-section">
-        <span class="tagline" style="margin-bottom: 1.5rem;">DIRECT CONCIERGE ACCESS</span>
-        <h2>{t.ctaTitle}</h2>
-        <p class="cta-desc">{t.ctaDesc}</p>
-        
-        <div id="cta-chat-trigger" role="button" class="live-status-indicator" style="cursor: pointer;">
-          <div class="pulse-dot"></div>
-          <span>{t.ctaStatus}</span>
-        </div>
-      </section>
+          <div class="blueprint-scroll-wrapper">
+            <div class="blueprint-wrapper">
+              <img src="/blueprint-3d.jpeg" alt="The Modular Logistics Blueprint" class="blueprint-img" />
+            </div>
+          </div>
+        </section>
 
-      <footer class="stats-section">
-        <div class="stat-item">
-          <h3>{t.stat1Title}</h3>
-          <p>{t.stat1Desc}</p>
-        </div>
-        <div class="stat-item">
-          <h3>{t.stat2Title}</h3>
-          <p>{t.stat2Desc}</p>
-        </div>
-        <div class="stat-item">
-          <h3>{t.stat3Title}</h3>
-          <p>{t.stat3Desc}</p>
-        </div>
-      </footer>
+        <!-- 03 / Infrastructure Layers -->
+        <section class="split-grid">
+          <div class="grid-sticky-left">
+            <div class="section-meta">03 / Infrastructure Layers</div>
+            <h2>Engineered Network Hierarchy</h2>
+          </div>
+          <div>
+            <div class="data-row">
+              <span class="row-index">01</span>
+              <div class="row-content">
+                <h3>Aggregate End-to-End Supply Chain Layer</h3>
+                <p>Consolidating all operational modules into a high-throughput computational system to orchestrate movement across supply nodes seamlessly.</p>
+              </div>
+            </div>
+            <div class="data-row">
+              <span class="row-index">02</span>
+              <div class="row-content">
+                <h3>Modular Logistics Routing</h3>
+                <p>Decoupled stream orchestration optimizing multi-modal supply chains for predictability, granular load balance, and asset utilization.</p>
+              </div>
+            </div>
+            <div class="data-row">
+              <span class="row-index">03</span>
+              <div class="row-content">
+                <h3>Functional Logistics Isolation</h3>
+                <p>Encapsulating single demands—Air, Sea, Road, and Rail Freight—into granular independent services to guarantee continuous execution safety.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 04 / Valuation Matrix & Data Warehouse Section -->
+        <section style="padding: 6rem 0 2rem 0; border-top: 1px solid var(--border-subtle);" class="section-valuation-en" id="valuation-en">
+          <div class="section-meta">04 / Engagement Matrix</div>
+          <h2 style="font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em;">Engineered Valuation Tier</h2>
+          
+          <div class="valuation-matrix">
+            <div class="valuation-node">
+              <div>
+                <div class="node-title">Architectural Design</div>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Comprehensive data blueprinting, pipeline mapping, and infrastructure advisory tailored for single-entity industrial structures.</p>
+              </div>
+              <div class="node-price" style="margin-top: 3rem;">$65,000+</div>
+            </div>
+            <div class="valuation-node premium">
+              <div>
+                <div class="node-title">Sovereignty Framework</div>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Full operational execution. Custom logistics router engineering, data pipeline building, and absolute infrastructure ownership transfer.</p>
+              </div>
+              <div class="node-price" style="margin-top: 3rem;">$150,000</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 🔗 Data Warehouse Integration Section (EN) -->
+        <section class="data-warehouse-section">
+          <p class="dw-title">Seamlessly Works With Your Existing Enterprise Data Infrastructure</p>
+          <div class="dw-grid">
+            <!-- Snowflake -->
+            <div class="dw-card">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#29B5E8"><path d="M12 0L9.2 4.8l2.8 1.6V10H6.4L4.8 7.2 0 10l4.8 2.8L0 15.6l4.8 2.8 1.6-2.8H12v3.6l-2.8 1.6L12 24l2.8-4.8-2.8-1.6V14h5.6l1.6 2.8 4.8-2.8-4.8-2.8 4.8-2.8-4.8-2.8-1.6 2.8H12V6.4l2.8-1.6L12 0z"/></svg>
+              <span>Snowflake</span>
+            </div>
+            <!-- Google BigQuery -->
+            <div class="dw-card">
+              <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/><path fill="#34A853" d="M12 11v6l4-2z"/></svg>
+              <span>Google BigQuery</span>
+            </div>
+            <!-- Amazon Redshift -->
+            <div class="dw-card">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF9900"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.8L18.8 8.4 12 12 5.2 8.4 12 4.8zM4 9.8l7 3.9v6.9l-7-3.5V9.8zm16 7.3l-7 3.5v-6.9l7-3.9v7.3z"/></svg>
+              <span>Amazon Redshift</span>
+            </div>
+            <!-- Databricks -->
+            <div class="dw-card">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF3621"><path d="M12 2L2 7.2v9.6L12 22l10-5.2V7.2L12 2zm0 2.4l7.2 3.8-7.2 3.8-7.2-3.8L12 4.4zm-7.2 6.2l7.2 3.8 7.2-3.8v2.4L12 16.8 4.8 13v-2.4zm0 4.8l7.2 3.8 7.2-3.8v2.4L12 21.6l-7.2-3.8v-2.4z"/></svg>
+              <span>Databricks</span>
+            </div>
+            <!-- PostgreSQL -->
+            <div class="dw-card">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#336791"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-1.84.63-3.53 1.69-4.88l11.19 11.19C15.53 19.37 13.84 20 12 20zm6.31-3.12L7.12 5.69C8.47 4.63 10.16 4 12 4c4.41 0 8 3.59 8 8 0 1.84-.63 3.53-1.69 4.88z"/></svg>
+              <span>PostgreSQL</span>
+            </div>
+          </div>
+        </section>
+
+      </main>
     </div>
 
+    <!-- =================================================================== -->
+    <!-- 🇹🇭 THAI LANGUAGE LAYER                                            -->
+    <!-- =================================================================== -->
+    <div id="layer-th" class="lang-layer">
+      <main class="container">
+        
+        <!-- 🎯 Hero Section (Executive Copy - TH) -->
+        <section class="hero-section">
+          <h1>สถาปัตยกรรม <span class="gold">ท่อส่งข้อมูล</span> และโครงสร้าง <span class="gold">Supply Chain ระดับองค์กร</span></h1>
+          <p class="hero-desc">วิศวกรรมระบบบริหารจัดการโลจิสติกส์ที่เป็นกรรมสิทธิ์ของคุณ เชื่อมโยงทุกคลังสินค้าและสายการผลิตอย่างสมบูรณ์</p>
+          <button class="cta-trigger" onclick="openTidioChat()">ร่วมวิเคราะห์สถาปัตยกรรมระบบ</button>
+        </section>
+
+        <!-- 01 / Aggregation Section -->
+        <section class="split-grid section-aggregation-th" id="aggregation-th">
+          <div class="grid-sticky-left">
+            <div class="section-meta">01 / แกนกลางการทำงาน</div>
+            <h2>การผสานรวมระบบปฏิบัติการภายใน</h2>
+          </div>
+          <div>
+            <div class="data-row">
+              <span class="row-index">01</span>
+              <div class="row-content">
+                <h3>Multi-Facility Synchronization</h3>
+                <p>รวบรวมท่อส่งข้อมูลที่กระจัดกระจายจากหลากหลายฐานการผลิตและคลังสินค้าให้เชื่อมต่อกันเป็นพาร์ทเดียว ลดช่องว่างและความล่าช้าระหว่างการจัดสรรสินค้าคงคลังกับขีดความสามารถจริงหน้างาน</p>
+              </div>
+            </div>
+            <div class="data-row">
+              <span class="row-index">02</span>
+              <div class="row-content">
+                <h3>Proprietary Logic Ownership</h3>
+                <p>ก้าวข้ามข้อจำกัดของซอฟต์แวร์สำเร็จรูป (SaaS) ทั่วไป อัลกอริทึมการจัดเส้นทาง ตรรกะธุรกรรม และการบริหารทรัพยากรภายในองค์กรของคุณ จะถูกพัฒนาและจัดเก็บอยู่บนพื้นที่ปลอดภัยที่เป็นกรรมสิทธิ์ของคุณเอง</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 02 / System Blueprints (Horizontal Mobile Scroll) -->
+        <section class="blueprint-container section-architecture-th" id="architecture-th">
+          <div class="section-meta">02 / พิมพ์เขียวระบบ</div>
+          <h2 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 2rem; letter-spacing: -0.02em;">พิมพ์เขียวระบบโลจิสติกส์แบบคอมโพสเซเบิล</h2>
+          
+          <p class="scroll-hint-text">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+            เลื่อนซ้าย-ขวาเพื่อดูรายละเอียด
+          </p>
+
+          <div class="blueprint-scroll-wrapper">
+            <div class="blueprint-wrapper">
+              <img src="/blueprint-3d.jpeg" alt="The Modular Logistics Blueprint" class="blueprint-img" />
+            </div>
+          </div>
+        </section>
+
+        <!-- 03 / Infrastructure Layers -->
+        <section class="split-grid">
+          <div class="grid-sticky-left">
+            <div class="section-meta">03 / ลำดับชั้นโครงสร้าง</div>
+            <h2>ลำดับชั้นโครงสร้างเครือข่ายวิศวกรรม</h2>
+          </div>
+          <div>
+            <div class="data-row">
+              <span class="row-index">01</span>
+              <div class="row-content">
+                <h3>Aggregate End-to-End Supply Chain Layer</h3>
+                <p>การหลอมรวมโมดูลการปฏิบัติงานทั้งหมดเข้าสู่ระบบประมวลผลประสิทธิภาพสูง เพื่อควบคุมการเคลื่อนย้ายสินค้าเชื่อมโยงระหว่างจุดกระจายสัญญาณอย่างไร้รอยต่อ</p>
+              </div>
+            </div>
+            <div class="data-row">
+              <span class="row-index">02</span>
+              <div class="row-content">
+                <h3>Modular Logistics Routing</h3>
+                <p>ระบบจัดเส้นทางโลจิสติกส์แบบ Decoupled ช่วยจัดการห่วงโซ่อุปทานที่มีความซับซ้อนให้สามารถพยากรณ์ล่วงหน้าได้ รักษาสมดุลของภาระงาน และการใช้สินทรัพย์อย่างคุ้มค่าสูงสุด</p>
+              </div>
+            </div>
+            <div class="data-row">
+              <span class="row-index">03</span>
+              <div class="row-content">
+                <h3>Functional Logistics Isolation</h3>
+                <p>แยกส่วนความต้องการการขนส่งเฉพาะด้าน—ทั้งทางอากาศ ทางทะเล ทางบก และทางราง—ออกเป็นโมดูลอิสระเพื่อความปลอดภัยและเสถียรภาพสูงสุดในการทำงาน</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 04 / Valuation Matrix & Data Warehouse Section -->
+        <section style="padding: 6rem 0 2rem 0; border-top: 1px solid var(--border-subtle);" class="section-valuation-th" id="valuation-th">
+          <div class="section-meta">04 / รูปแบบการพัฒนาระบบ</div>
+          <h2 style="font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em;">ระดับมูลค่าการวิศวกรรมสถาปัตยกรรม</h2>
+          
+          <div class="valuation-matrix">
+            <div class="valuation-node">
+              <div>
+                <div class="node-title">Architectural Design</div>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">การวางพิมพ์เขียวโครงสร้างข้อมูลอย่างครอบคลุม การทำแผนผังท่อส่งข้อมูล และการให้คำปรึกษาด้านโครงสร้างพื้นฐานสำหรับกลุ่มอุตสาหกรรม</p>
+              </div>
+              <div class="node-price" style="margin-top: 3rem;">$65,000+</div>
+            </div>
+            <div class="valuation-node premium">
+              <div>
+                <div class="node-title">Sovereignty Framework</div>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">การดำเนินงานเต็มรูปแบบ วิศวกรรมระบบเราเตอร์โลจิสติกส์เฉพาะตัว การสร้างโครงสร้างท่อข้อมูล และการส่งมอบสิทธิ์ขาดในโครงสร้างพื้นฐาน 100%</p>
+              </div>
+              <div class="node-price" style="margin-top: 3rem;">$150,000</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 🔗 Data Warehouse Integration Section (TH) -->
+        <section class="data-warehouse-section">
+          <p class="dw-title">Seamlessly Works With Your Existing Enterprise Data Infrastructure</p>
+          <div class="dw-grid">
+            <!-- Snowflake -->
+            <div class="dw-card">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#29B5E8"><path d="M12 0L9.2 4.8l2.8 1.6V10H6.4L4.8 7.2 0 10l4.8 2.8L0 15.6l4.8 2.8 1.6-2.8H12v3.6l-2.8 1.6L12 24l2.8-4.8-2.8-1.6V14h5.6l1.6 2.8 4.8-2.8-4.8-2.8 4.8-2.8-4.8-2.8-1.6 2.8H12V6.4l2.8-1.6L12 0z"/></svg>
+              <span>Snowflake</span>
+            </div>
+            <!-- Google BigQuery -->
+            <div class="dw-card">
+              <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/><path fill="#34A853" d="M12 11v6l4-2z"/></svg>
+              <span>Google BigQuery</span>
+            </div>
+            <!-- Amazon Redshift -->
+            <div class="dw-card">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF9900"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.8L18.8 8.4 12 12 5.2 8.4 12 4.8zM4 9.8l7 3.9v6.9l-7-3.5V9.8zm16 7.3l-7 3.5v-6.9l7-3.9v7.3z"/></svg>
+              <span>Amazon Redshift</span>
+            </div>
+            <!-- Databricks -->
+            <div class="dw-card">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF3621"><path d="M12 2L2 7.2v9.6L12 22l10-5.2V7.2L12 2zm0 2.4l7.2 3.8-7.2 3.8-7.2-3.8L12 4.4zm-7.2 6.2l7.2 3.8 7.2-3.8v2.4L12 16.8 4.8 13v-2.4zm0 4.8l7.2 3.8 7.2-3.8v2.4L12 21.6l-7.2-3.8v-2.4z"/></svg>
+              <span>Databricks</span>
+            </div>
+            <!-- PostgreSQL -->
+            <div class="dw-card">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#336791"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-1.84.63-3.53 1.69-4.88l11.19 11.19C15.53 19.37 13.84 20 12 20zm6.31-3.12L7.12 5.69C8.47 4.63 10.16 4 12 4c4.41 0 8 3.59 8 8 0 1.84-.63 3.53-1.69 4.88z"/></svg>
+              <span>PostgreSQL</span>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <footer>
+      <div>&copy; 2026 UltraCompetitive. All rights reserved. Deployed via Astro on Cloudflare Pages.</div>
+      <div>ADS v2.1 Architecture Framework</div>
+    </footer>
+
     <script is:inline>
-      document.addEventListener('DOMContentLoaded', () => {
-        // 1. ควบคุมปุ่มเปิดแผงผังข้อมูลสถาปัตยกรรม (Deconstruct Data)
-        const trigger = document.getElementById('disclosure-trigger');
-        const container = trigger?.parentElement;
-        trigger?.addEventListener('click', () => {
-          container?.classList.toggle('is-active');
-        });
+      function orchestrateLanguage() {
+        const urlParams = new URLSearchParams(window.location.search);
+        let lang = urlParams.get('lang');
 
-        // 2. ควบคุมปุ่มสถานะส้มกลางหน้าเพจ ให้กดคลิกเพื่อเปิดกล่องแชต Tidio ได้ทันทีแบบยืดหยุ่น
-        const ctaTrigger = document.getElementById('cta-chat-trigger');
-        ctaTrigger?.addEventListener('click', () => {
-          if (window.tidioChatApi) {
+        if (!lang) {
+          const userLang = navigator.language || navigator.userLanguage;
+          lang = userLang.startsWith('th') ? 'th' : 'en';
+        }
+
+        const layerEn = document.getElementById('layer-en');
+        const layerTh = document.getElementById('layer-th');
+        const btnEn = document.getElementById('btn-en');
+        const btnTh = document.getElementById('btn-th');
+
+        if (lang === 'th') {
+          if (layerTh) layerTh.classList.add('active-layer');
+          if (layerEn) layerEn.classList.remove('active-layer');
+          if (btnTh) btnTh.classList.add('active');
+          if (btnEn) btnEn.classList.remove('active');
+          document.documentElement.lang = 'th';
+        } else {
+          if (layerEn) layerEn.classList.add('active-layer');
+          if (layerTh) layerTh.classList.remove('active-layer');
+          if (btnEn) btnEn.classList.add('active');
+          if (btnTh) btnTh.classList.remove('active');
+          document.documentElement.lang = 'en';
+        }
+      }
+
+      function scrollToSection(sectionName) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const lang = urlParams.get('lang') || (navigator.language.startsWith('th') ? 'th' : 'en');
+        
+        const targetId = `${sectionName}-${lang}`;
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+
+      orchestrateLanguage();
+      window.addEventListener('DOMContentLoaded', orchestrateLanguage);
+
+      // ===================================================================
+      // 🔥 Tidio Chat Trigger Handler
+      // ===================================================================
+      function openTidioChat() {
+        if (typeof tidioChatApi !== 'undefined') {
+          tidioChatApi.open();
+        } else {
+          window.tidioChatApi = window.tidioChatApi || {};
+          window.tidioChatApi.onload = function() {
             window.tidioChatApi.open();
-          } else {
-            // เผื่อกรณีลูกค้าคลิกเร็วตอนสคริปต์หลักยังโหลดไม่เสร็จ ให้ดักเหตุการณ์รอเปิดทันที
-            document.addEventListener("tidioChatOneEvent", () => {
-              window.tidioChatApi.open();
-            });
-          }
-        });
-      });
+          };
+        }
+      }
     </script>
-
-    <script is:inline src="https://code.tidio.co/phnlyg5kum5wnygb7aqtmzluecmufqao.js" async></script>
   </body>
 </html>

@@ -275,8 +275,25 @@
 
       footer { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem 3rem 2rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-dim); }
 
-      .lang-layer { display: none !important; }
-      .lang-layer.active-layer { display: block !important; }
+      /* เปลี่ยนวิธีซ่อนเป็น Offscreen เพื่อบังคับให้เบราว์เซอร์พรีโหลดรูปทั้งหมดล่วงหน้าทันที */
+      .lang-layer { 
+        position: absolute !important;
+        left: -9999px !important;
+        top: -9999px !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        height: 0 !important;
+        overflow: hidden !important;
+      }
+      .lang-layer.active-layer { 
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
     </style>
   </head>
   <body>
@@ -338,7 +355,7 @@
             <span>⇄ Scroll horizontally to view details</span>
           </div>
           <div class="blueprint-standalone-frame">
-            <img src="/blueprint-3d.jpeg" alt="The Modular Logistics Blueprint" loading="eager" decoding="async" />
+            <img src="/blueprint-3d.jpeg" alt="The Modular Logistics Blueprint" loading="eager" decoding="sync" />
           </div>
         </section>
 
@@ -394,7 +411,7 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/project-2021.jpg" alt="Supply Chain & Port Infrastructure" loading="eager" decoding="async" />
+                <img src="/project-2021.jpg" alt="Supply Chain & Port Infrastructure" loading="eager" decoding="sync" />
               </div>
             </div>
 
@@ -412,7 +429,7 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/project-2020.jpg" alt="Cross-Border E-Commerce Logistics" loading="eager" decoding="async" />
+                <img src="/project-2020.jpg" alt="Cross-Border E-Commerce Logistics" loading="eager" decoding="sync" />
               </div>
             </div>
 
@@ -430,7 +447,7 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/work-2019.jpg" alt="Parcel Operations" loading="eager" decoding="async" />
+                <img src="/work-2019.jpg" alt="Parcel Operations" loading="eager" decoding="sync" />
               </div>
             </div>
 
@@ -448,7 +465,7 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/work-2015.jpg" alt="International Buyer Consolidation" loading="eager" decoding="async" />
+                <img src="/work-2015.jpg" alt="International Buyer Consolidation" loading="eager" decoding="sync" />
               </div>
             </div>
 
@@ -539,7 +556,7 @@
             <span>⇄ เลื่อนแนวนอนเพื่อดูรายละเอียดเพิ่มเติม</span>
           </div>
           <div class="blueprint-standalone-frame">
-            <img src="/blueprint-3d.jpeg" alt="The Modular Logistics Blueprint" loading="eager" decoding="async" />
+            <img src="/blueprint-3d.jpeg" alt="The Modular Logistics Blueprint" loading="eager" decoding="sync" />
           </div>
         </section>
 
@@ -595,7 +612,7 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/project-2021.jpg" alt="Supply Chain & Port Infrastructure" loading="eager" decoding="async" />
+                <img src="/project-2021.jpg" alt="Supply Chain & Port Infrastructure" loading="eager" decoding="sync" />
               </div>
             </div>
 
@@ -613,7 +630,7 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/project-2020.jpg" alt="Cross-Border E-Commerce Logistics" loading="eager" decoding="async" />
+                <img src="/project-2020.jpg" alt="Cross-Border E-Commerce Logistics" loading="eager" decoding="sync" />
               </div>
             </div>
 
@@ -631,7 +648,7 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/work-2019.jpg" alt="Parcel Operations" loading="eager" decoding="async" />
+                <img src="/work-2019.jpg" alt="Parcel Operations" loading="eager" decoding="sync" />
               </div>
             </div>
 
@@ -649,7 +666,7 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/work-2015.jpg" alt="International Buyer Consolidation" loading="eager" decoding="async" />
+                <img src="/work-2015.jpg" alt="International Buyer Consolidation" loading="eager" decoding="sync" />
               </div>
             </div>
 

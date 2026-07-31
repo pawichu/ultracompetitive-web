@@ -3,583 +3,515 @@
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UltraCompetitive | Sovereign Logistics & Supply Chain Architecture</title>
+    <title>UltraCompetitive | Sovereign Logistics & Data Architecture</title>
     
     <script src="//code.tidio.co/phnlyg5kum5wnygb7aqtmzluecmufqao.js" async></script>
 
     <style>
-      /* ------------------------------------------------------------------- */
-      /* 🎨 DESIGN SYSTEM & ARCHITECTURE PRINCIPLES (Todor Dimov Inspired)    */
-      /* ------------------------------------------------------------------- */
       :root {
-        --bg-pure: #030712;
-        --bg-surface: #090d16;
-        --brand-gold: #FF6B00; /* Updated to Vibrant Orange #FF6B00 */
-        --brand-orange: #FF6B00; 
-        --brand-blue: #2563eb;
+        --bg-pure: #070708;
+        --bg-surface: #0f1012;
+        --bg-card: #131418;
         --text-pure: #ffffff;
-        --text-muted: #8292a8;
-        --text-dim: #475569;
-        --border-subtle: #1e293b;
+        --text-muted: #a1a1aa;
+        --text-dim: #52525b;
+        --accent-orange: #ff6b00;
+        --accent-glow: rgba(255, 107, 0, 0.15);
+        --border-subtle: #1e1f24;
       }
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      html {
-        scroll-behavior: smooth;
-        background-color: var(--bg-pure);
-      }
-
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; background-color: var(--bg-pure); }
       body {
         background-color: var(--bg-pure);
         color: var(--text-pure);
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        line-height: 1.6;
+        font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
         -webkit-font-smoothing: antialiased;
       }
 
-      /* 🌐 Navigation Header Layout Structure */
       header {
-        max-width: 1400px;
+        max-width: 1100px;
         margin: 0 auto;
         padding: 2.5rem 2rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap;
-        gap: 1.5rem;
       }
 
-      .logo {
-        font-size: 1.1rem;
-        font-weight: 900;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-      .logo span { color: var(--brand-gold); }
+      .logo { font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-orange); }
 
-      nav {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 2.5rem;
-      }
-
-      /* 💡 CONTROLLER: คัดแยกและควบคุมการซ่อน Anchor Link บน Mobile */
-      .nav-links {
-        display: none;
-        gap: 2.5rem;
-      }
-
-      @media (min-width: 768px) {
-        .nav-links {
-          display: flex;
-        }
-      }
-
-      nav a {
-        color: var(--text-muted);
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: 500;
-        transition: color 0.3s;
-      }
+      nav { display: flex; align-items: center; gap: 2rem; }
+      .nav-links { display: flex; gap: 2rem; }
+      nav a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; }
       nav a:hover { color: var(--text-pure); }
 
-      /* 🌐 Language Switcher Widget Setup */
       .lang-switcher {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
         font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        border-left: none;
-        padding-left: 0;
+        font-weight: 600;
+        border-left: 1px solid var(--border-subtle);
+        padding-left: 1.5rem;
       }
+      .lang-btn { color: var(--text-dim); text-decoration: none; cursor: pointer; transition: color 0.2s; }
+      .lang-btn.active { color: var(--accent-orange); font-weight: 700; }
 
-      @media (min-width: 768px) {
-        .lang-switcher {
-          border-left: 1px solid var(--border-subtle);
-          padding-left: 1.5rem;
-        }
-      }
+      .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-      .lang-btn {
-        color: var(--text-dim);
-        text-decoration: none;
-        cursor: pointer;
-        transition: color 0.2s;
-      }
-      .lang-btn.active {
-        color: var(--brand-gold);
-      }
-      .lang-btn:hover { color: var(--text-pure); }
+      .hero-section { padding: 6rem 0 5rem 0; max-width: 880px; }
+      .hero-section h1 { font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 1.08; font-weight: 600; margin-bottom: 2rem; letter-spacing: -0.03em; color: var(--text-pure); }
+      .hero-section h1 .highlight { color: var(--accent-orange); }
+      .hero-desc { font-size: 1.15rem; color: var(--text-muted); max-width: 680px; margin-bottom: 3rem; line-height: 1.6; }
 
-      /* 📦 Structural Layout Container */
-      .container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 2rem;
-      }
-
-      /* 🏛️ Hero Section: Oversize Typography Hierarchy */
-      .hero-section {
-        padding: 7rem 0 5rem 0;
-        max-width: 1050px;
-      }
-
-      .hero-section h1 {
-        font-size: clamp(2.2rem, 5vw, 4.8rem);
-        line-height: 1.12;
-        font-weight: 800;
-        letter-spacing: -0.03em;
-        margin-bottom: 2rem;
-        color: var(--text-pure);
-      }
-
-      .hero-section h1 span.gold { color: var(--brand-gold); }
-      .hero-section h1 span.muted { color: var(--text-dim); }
-
-      .hero-desc {
-        font-size: clamp(1.05rem, 1.6vw, 1.3rem);
-        color: var(--text-muted);
-        max-width: 750px;
-        line-height: 1.6;
-        margin-bottom: 3rem;
-      }
-
-      /* 🎯 Call to Action (Tidio Trigger Integration) */
       .cta-trigger {
         display: inline-flex;
         align-items: center;
         background: transparent;
         color: var(--text-pure);
-        border: 1px solid var(--brand-gold);
-        padding: 1rem 2.2rem;
-        font-size: 0.9rem;
-        font-weight: 600;
+        border: 1px solid var(--accent-orange);
+        padding: 0.85rem 2.2rem;
+        font-size: 0.85rem;
+        font-weight: 500;
         border-radius: 50px;
-        text-decoration: none;
         cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: all 0.3s ease;
+        box-shadow: 0 0 15px var(--accent-glow);
       }
-      .cta-trigger:hover {
-        background: var(--brand-gold);
-        color: #000000;
-        box-shadow: 0 0 25px rgba(255, 107, 0, 0.4);
-        transform: translateY(-2px);
-      }
+      .cta-trigger:hover { background: var(--accent-orange); color: #000; box-shadow: 0 0 25px rgba(255, 107, 0, 0.4); }
 
-      /* 📊 Section Sub-headers */
-      .section-meta {
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        color: var(--brand-gold);
-        margin-bottom: 1.5rem;
-        font-weight: 700;
-      }
+      .section-meta { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-orange); margin-bottom: 1.2rem; font-weight: 600; }
+      .section-title { font-size: 2rem; font-weight: 600; margin-bottom: 2.5rem; letter-spacing: -0.02em; color: var(--text-pure); }
 
-      /* 🧩 Todor Dimov Style Split Grid Layout */
-      .split-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 4rem;
-        padding: 6rem 0;
+      .portfolio-group { padding: 5rem 0; border-top: 1px solid var(--border-subtle); }
+
+      /* =================================================================== */
+      /* 🌟 02 / SYSTEM BLUEPRINTS (SCROLLABLE IMAGE)                       */
+      /* =================================================================== */
+      .blueprint-section {
+        padding: 5rem 0;
         border-top: 1px solid var(--border-subtle);
       }
-      @media (min-width: 968px) {
-        .split-grid {
-          grid-template-columns: 4fr 6fr;
-          gap: 6rem;
-        }
+
+      .scroll-hint {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-bottom: 0.75rem;
+        letter-spacing: 0.02em;
       }
 
-      .grid-sticky-left {
+      .blueprint-standalone-frame {
+        width: 100%;
+        background: #040507;
+        border: 1px solid var(--border-subtle);
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .blueprint-standalone-frame img {
+        min-width: 1000px;
+        width: 100%;
         height: auto;
-      }
-      @media (min-width: 968px) {
-        .grid-sticky-left {
-          position: sticky;
-          top: 4rem;
-          height: fit-content;
-        }
+        display: block;
+        margin: 0 auto;
+        filter: contrast(1.05) brightness(1.02);
       }
 
-      .grid-sticky-left h2 {
-        font-size: clamp(2rem, 3.5vw, 3.5rem);
-        line-height: 1.1;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-      }
+      .blueprint-standalone-frame::-webkit-scrollbar { height: 6px; }
+      .blueprint-standalone-frame::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 4px; }
+      .blueprint-standalone-frame::-webkit-scrollbar-thumb { background: var(--accent-orange); border-radius: 4px; }
 
-      /* 📑 Minimal Data Rows */
-      .data-row {
+      /* =================================================================== */
+      /* 🌟 TWO-COLUMN ARCHITECTURE LAYOUT                                  */
+      /* =================================================================== */
+      .arch-grid {
         display: grid;
-        grid-template-columns: 1fr;
-        padding: 3rem 0;
-        border-bottom: 1px solid var(--border-subtle);
+        grid-template-columns: 1fr 1.2fr;
+        gap: 3rem;
+        align-items: start;
+      }
+
+      .arch-list { display: flex; flex-direction: column; gap: 2.5rem; }
+      .arch-item { display: flex; gap: 1.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-subtle); }
+      .arch-item:last-child { border-bottom: none; }
+      .arch-num { font-size: 0.8rem; font-weight: 600; color: var(--text-dim); min-width: 24px; padding-top: 0.2rem; }
+      .arch-content h3 { font-size: 1.15rem; font-weight: 600; color: var(--text-pure); margin-bottom: 0.6rem; }
+      .arch-content p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+      /* =================================================================== */
+      /* 🌟 TRACK RECORD CARDS (MOBILE OPTIMIZED LAYOUT)                     */
+      /* =================================================================== */
+      .portfolio-list { display: flex; flex-direction: column; gap: 4rem; width: 100%; }
+      .portfolio-card { display: flex; flex-direction: column; gap: 1.2rem; width: 100%; }
+      
+      .portfolio-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
         gap: 1.5rem;
       }
-      @media (min-width: 640px) {
-        .data-row {
-          grid-template-columns: auto 1fr auto;
-          gap: 3rem;
-        }
-      }
-      .data-row:first-child { padding-top: 0; }
 
-      .row-index {
-        font-size: 0.9rem;
-        font-weight: 600;
+      .header-main-info {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+        flex: 1;
+      }
+
+      .item-year {
         color: var(--text-dim);
+        font-size: 0.9rem;
+        font-weight: 500;
+        white-space: nowrap;
         padding-top: 0.2rem;
       }
 
-      .row-content h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: var(--text-pure);
-      }
-      .row-content p {
-        color: var(--text-muted);
-        font-size: 0.95rem;
-        line-height: 1.6;
-        max-width: 580px;
-      }
-
-      /* 🗺️ Blueprint Image Showcase Container (Mobile Optimized Scroll) */
-      .blueprint-container {
-        padding: 4rem 0 6rem 0;
-        border-top: 1px solid var(--border-subtle);
-      }
-
-      .scroll-hint-text {
-        font-size: 0.75rem;
-        color: var(--text-dim);
-        margin-bottom: 0.75rem;
-        text-align: right;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 0.4rem;
-      }
-      @media (min-width: 768px) {
-        .scroll-hint-text {
-          display: none;
-        }
-      }
-
-      .blueprint-scroll-wrapper {
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 0.75rem;
-      }
-      .blueprint-scroll-wrapper::-webkit-scrollbar {
-        height: 4px;
-      }
-      .blueprint-scroll-wrapper::-webkit-scrollbar-track {
-        background: rgba(30, 41, 59, 0.5);
-        border-radius: 4px;
-      }
-      .blueprint-scroll-wrapper::-webkit-scrollbar-thumb {
-        background: var(--brand-gold);
-        border-radius: 4px;
-      }
-
-      .blueprint-wrapper {
-        background-color: var(--bg-surface);
-        border: 1px solid var(--border-subtle);
-        border-radius: 12px;
-        padding: 2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 680px;
-      }
-      @media (min-width: 768px) {
-        .blueprint-wrapper {
-          min-width: 0;
-          width: 100%;
-        }
-      }
-
-      .blueprint-img {
-        width: 100%;
-        height: auto;
-        object-contain: fit;
-        border-radius: 8px;
-        opacity: 0.92;
-        transition: opacity 0.3s;
-      }
-      .blueprint-img:hover { opacity: 1; }
-
-      /* 💳 Valuation Minimal Structure */
-      .valuation-matrix {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-      }
-      .valuation-node {
-        background: var(--bg-surface);
-        border: 1px solid var(--border-subtle);
-        padding: 3rem 2.5rem;
-        border-radius: 8px;
+      .title-location-wrap {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-      }
-      .valuation-node.premium {
-        border-color: var(--brand-gold);
-        box-shadow: 0 0 30px rgba(255, 107, 0, 0.08);
-      }
-      .node-title {
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-bottom: 2rem;
-      }
-      .node-price {
-        font-size: 2.8rem;
-        font-weight: 800;
-        color: var(--brand-gold);
-        letter-spacing: -0.02em;
-        margin-bottom: 1rem;
+        gap: 0.5rem;
+        flex: 1;
       }
 
-      /* 🔄 Data Warehouse Integration Section */
-      .data-warehouse-section {
-        padding: 4rem 2rem;
-        border-top: 1px solid var(--border-subtle);
-        border-bottom: 1px solid var(--border-subtle);
-        background: rgba(9, 13, 22, 0.6);
-        margin: 5rem 0;
-        border-radius: 12px;
-      }
-      .dw-title {
-        font-size: 0.78rem;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        font-weight: 700;
-        color: var(--brand-gold);
-        text-align: center;
-        margin-bottom: 2.5rem;
-      }
-      .dw-grid {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: 1.5rem 2.5rem;
-      }
-      .dw-card {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 0.75rem 1.25rem;
-        border-radius: 8px;
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid var(--border-subtle);
-        transition: all 0.2s ease;
-      }
-      .dw-card:hover {
-        border-color: rgba(255, 107, 0, 0.4);
-        transform: translateY(-2px);
-      }
-      .dw-card span {
-        font-size: 0.88rem;
+      .item-title {
+        font-size: 1.35rem;
         font-weight: 600;
-        letter-spacing: 0.02em;
         color: var(--text-pure);
+        letter-spacing: -0.02em;
+        line-height: 1.35;
       }
 
-      /* 🎌 Footer Layout */
-      footer {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 6rem 2rem 3rem 2rem;
-        border-top: 1px solid var(--border-subtle);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 2rem;
-        font-size: 0.8rem;
-        color: var(--text-dim);
+      .item-category {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent-orange);
+        font-weight: 600;
+        white-space: nowrap;
+        padding-top: 0.2rem;
       }
 
-      /* 🦾 Language Layers Toggle Logic Mechanics */
-      .lang-layer {
-        display: none;
+      .item-location {
+        display: inline-block;
+        font-size: 0.75rem;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text-muted);
+        padding: 0.25rem 0.65rem;
+        border-radius: 4px;
+        font-weight: 400;
+        width: fit-content;
       }
-      .lang-layer.active-layer {
-        display: block !important;
+
+      .featured-blueprint {
+        width: 100%;
+        height: 420px;
+        overflow: hidden;
+        border-radius: 14px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        display: block;
       }
+      .featured-blueprint img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+      .featured-blueprint:hover img { transform: scale(1.02); }
+
+      /* Mobile UI Optimization */
+      @media (max-width: 768px) {
+        .arch-grid { grid-template-columns: 1fr; gap: 2rem; }
+        .blueprint-standalone-frame { padding: 0.8rem; }
+        
+        .portfolio-card-header {
+          flex-direction: column;
+          gap: 0.6rem;
+        }
+
+        .header-top-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+        }
+
+        .header-main-info {
+          flex-direction: column;
+          gap: 0.4rem;
+          width: 100%;
+        }
+
+        .item-category {
+          text-align: right;
+        }
+
+        .featured-blueprint { height: 260px; }
+      }
+
+      .capabilities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
+      .capability-card { background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 3rem; border-radius: 16px; }
+      .capability-card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-pure); }
+      .capability-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+      .dw-section { padding: 5rem 0; border-top: 1px solid var(--border-subtle); }
+      .dw-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 1.5rem; margin-top: 2rem; }
+      .dw-card { 
+        display: flex; 
+        align-items: center; 
+        gap: 0.75rem; 
+        padding: 0.75rem 1.5rem; 
+        border-radius: 50px; 
+        background: var(--bg-card); 
+        border: 1px solid var(--border-subtle); 
+        font-size: 0.85rem; 
+        font-weight: 500; 
+        color: var(--text-muted); 
+      }
+      .dw-card svg { width: 18px; height: 18px; fill: var(--accent-orange); display: block; }
+
+      footer { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem 3rem 2rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-dim); }
+
+      /* Strict Language Layer Hiding Rules */
+      .lang-layer { display: none !important; }
+      .lang-layer.active-layer { display: block !important; }
     </style>
   </head>
   <body>
 
     <header>
-      <div class="logo">Ultra<span>Competitive</span></div>
+      <div class="logo">UltraCompetitive</div>
       <nav>
         <div class="nav-links">
-          <a href="#aggregation" onclick="event.preventDefault(); scrollToSection('aggregation');">Aggregation</a>
-          <a href="#architecture" onclick="event.preventDefault(); scrollToSection('architecture');">Architecture</a>
-          <a href="#valuation" onclick="event.preventDefault(); scrollToSection('valuation');">Valuation</a>
+          <a href="#work" onclick="event.preventDefault(); scrollToSection('work');">Work</a>
+          <a href="#projects" onclick="event.preventDefault(); scrollToSection('projects');">Project</a>
         </div>
         
         <div class="lang-switcher">
-          <a href="?lang=en" id="btn-en" class="lang-btn" style="text-decoration: none;">EN</a>
-          <span style="color: var(--text-dim); cursor: default;">/</span>
-          <a href="?lang=th" id="btn-th" class="lang-btn" style="text-decoration: none;">TH</a>
+          <a href="?lang=en" id="btn-en" class="lang-btn">EN</a>
+          <span style="color: var(--text-dim);">/</span>
+          <a href="?lang=th" id="btn-th" class="lang-btn">TH</a>
         </div>
       </nav>
     </header>
 
     <!-- =================================================================== -->
-    <!-- 🌐 ENGLISH LANGUAGE LAYER                                           -->
+    <!-- 🌐 ENGLISH LANGUAGE LAYER                                          -->
     <!-- =================================================================== -->
     <div id="layer-en" class="lang-layer">
       <main class="container">
         
-        <!-- 🎯 Hero Section (Executive Copy - EN) -->
         <section class="hero-section">
-          <h1>Sovereign <span class="gold">Data Pipelines</span> & Enterprise <span class="gold">Supply Chain Infrastructure</span></h1>
+          <h1>Sovereign <span class="highlight">Data Pipelines</span> & Enterprise <span class="highlight">Supply Chain</span> Infrastructure</h1>
           <p class="hero-desc">Engineered for large-scale enterprise control, proprietary business logic, and multi-facility synchronization.</p>
           <button class="cta-trigger" onclick="openTidioChat()">Discuss Architecture Blueprint</button>
         </section>
 
-        <!-- 01 / Aggregation Section -->
-        <section class="split-grid section-aggregation-en" id="aggregation-en">
-          <div class="grid-sticky-left">
-            <div class="section-meta">01 / Functional Core</div>
-            <h2>Internal Operations Aggregation</h2>
-          </div>
-          <div>
-            <div class="data-row">
-              <span class="row-index">01</span>
-              <div class="row-content">
-                <h3>Multi-Facility Synchronization</h3>
-                <p>Consolidating disparate data streams across production hubs into a unified operational layer. Eliminating latency between inventory deployment and actual warehouse capability.</p>
-              </div>
+        <!-- 01 / FUNCTIONAL CORE -->
+        <section class="portfolio-group">
+          <div class="arch-grid">
+            <div>
+              <div class="section-meta">01 / FUNCTIONAL CORE</div>
+              <h2 class="section-title">Internal Operations Aggregation</h2>
             </div>
-            <div class="data-row">
-              <span class="row-index">02</span>
-              <div class="row-content">
-                <h3>Proprietary Logic Ownership</h3>
-                <p>Bypassing the constraints of rigid SaaS platforms. Your transactional flows, routing algorithms, and resource allocation logic are engineered natively within your secure perimeter.</p>
+            <div class="arch-list">
+              <div class="arch-item">
+                <span class="arch-num">01</span>
+                <div class="arch-content">
+                  <h3>Multi-Facility Synchronization</h3>
+                  <p>Consolidating disparate data streams across production hubs into a unified operational layer. Eliminating latency between inventory deployment and actual warehouse capability.</p>
+                </div>
+              </div>
+              <div class="arch-item">
+                <span class="arch-num">02</span>
+                <div class="arch-content">
+                  <h3>Proprietary Logic Ownership</h3>
+                  <p>Bypassing the constraints of rigid SaaS platforms. Your transactional flow, routing algorithms, and resource allocation logic are engineered natively within your secure perimeter.</p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- 02 / System Blueprints (Horizontal Mobile Scroll) -->
-        <section class="blueprint-container section-architecture-en" id="architecture-en">
-          <div class="section-meta">02 / System Blueprints</div>
-          <h2 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 2rem; letter-spacing: -0.02em;">The Modular Logistics Blueprint</h2>
+        <!-- 02 / SYSTEM BLUEPRINTS -->
+        <section class="blueprint-section" id="projects-en">
+          <div class="section-meta">02 / SYSTEM BLUEPRINTS</div>
+          <h2 class="section-title">The Modular Logistics Blueprint</h2>
           
-          <p class="scroll-hint-text">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-            Scroll horizontally to view details
-          </p>
+          <div class="scroll-hint">
+            <span>⇄ Scroll horizontally to view details</span>
+          </div>
 
-          <div class="blueprint-scroll-wrapper">
-            <div class="blueprint-wrapper">
-              <img src="/blueprint-3d.jpeg" alt="The Modular Logistics Blueprint" class="blueprint-img" />
+          <div class="blueprint-standalone-frame">
+            <img src="/blueprint-3d.jpeg" alt="The Modular Logistics Blueprint" />
+          </div>
+        </section>
+
+        <!-- 03 / INFRASTRUCTURE LAYERS -->
+        <section class="portfolio-group">
+          <div class="arch-grid">
+            <div>
+              <div class="section-meta">03 / INFRASTRUCTURE LAYERS</div>
+              <h2 class="section-title">Engineered Network Hierarchy</h2>
+            </div>
+            <div class="arch-list">
+              <div class="arch-item">
+                <span class="arch-num">01</span>
+                <div class="arch-content">
+                  <h3>Aggregate End-to-End Supply Chain Layer</h3>
+                  <p>Consolidating all operational modules into a high-throughput computational system to orchestrate movement across supply nodes seamlessly.</p>
+                </div>
+              </div>
+              <div class="arch-item">
+                <span class="arch-num">02</span>
+                <div class="arch-content">
+                  <h3>Modular Logistics Routing</h3>
+                  <p>Decoupled stream orchestration optimizing multi-modal supply chains for predictability, granular load balance, and asset utilization.</p>
+                </div>
+              </div>
+              <div class="arch-item">
+                <span class="arch-num">03</span>
+                <div class="arch-content">
+                  <h3>Functional Logistics Isolation</h3>
+                  <p>Encapsulating single demands—Air, Sea, Road, and Rail Freight—into granular independent services to guarantee continuous execution safety.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- 03 / Infrastructure Layers -->
-        <section class="split-grid">
-          <div class="grid-sticky-left">
-            <div class="section-meta">03 / Infrastructure Layers</div>
-            <h2>Engineered Network Hierarchy</h2>
+        <!-- ADDITIONAL WORK TRACK RECORD -->
+        <section class="portfolio-group" id="work-en">
+          <div class="section-meta">TRACK RECORD</div>
+          <h2 class="section-title">Commercial Experience & Operations</h2>
+          <div class="portfolio-list">
+
+            <div class="portfolio-card">
+              <div class="portfolio-card-header">
+                <div class="header-main-info">
+                  <div class="header-top-row">
+                    <span class="item-year">2021</span>
+                    <span class="item-category">Container Mobilization</span>
+                  </div>
+                  <div class="title-location-wrap">
+                    <div class="item-title">Supply Chain & Port Infrastructure</div>
+                    <span class="item-location">Consultation</span>
+                  </div>
+                </div>
+              </div>
+              <div class="featured-blueprint">
+                <img src="/project-2021.jpg" alt="Supply Chain & Port Infrastructure" />
+              </div>
+            </div>
+
+            <div class="portfolio-card">
+              <div class="portfolio-card-header">
+                <div class="header-main-info">
+                  <div class="header-top-row">
+                    <span class="item-year">2020</span>
+                    <span class="item-category">Fulfillment Hub</span>
+                  </div>
+                  <div class="title-location-wrap">
+                    <div class="item-title">Cross-Border E-Commerce Logistics</div>
+                    <span class="item-location">Shenzhen, CN</span>
+                  </div>
+                </div>
+              </div>
+              <div class="featured-blueprint">
+                <img src="/project-2020.jpg" alt="Cross-Border E-Commerce Logistics" />
+              </div>
+            </div>
+
+            <div class="portfolio-card">
+              <div class="portfolio-card-header">
+                <div class="header-main-info">
+                  <div class="header-top-row">
+                    <span class="item-year">2019</span>
+                    <span class="item-category">DEL Last-Mile Delivery</span>
+                  </div>
+                  <div class="title-location-wrap">
+                    <div class="item-title">Cross-Border & Domestic Parcel Operations</div>
+                    <span class="item-location">Bangkok, TH</span>
+                  </div>
+                </div>
+              </div>
+              <div class="featured-blueprint">
+                <img src="/work-2019.jpg" alt="Parcel Operations" />
+              </div>
+            </div>
+
+            <div class="portfolio-card">
+              <div class="portfolio-card-header">
+                <div class="header-main-info">
+                  <div class="header-top-row">
+                    <span class="item-year">2015</span>
+                    <span class="item-category">Global Warehouse Consolidation</span>
+                  </div>
+                  <div class="title-location-wrap">
+                    <div class="item-title">International Buyer Consolidation</div>
+                    <span class="item-location">Melbourne & Cologne</span>
+                  </div>
+                </div>
+              </div>
+              <div class="featured-blueprint">
+                <img src="/work-2015.jpg" alt="International Buyer Consolidation" />
+              </div>
+            </div>
+
           </div>
-          <div>
-            <div class="data-row">
-              <span class="row-index">01</span>
-              <div class="row-content">
-                <h3>Aggregate End-to-End Supply Chain Layer</h3>
-                <p>Consolidating all operational modules into a high-throughput computational system to orchestrate movement across supply nodes seamlessly.</p>
-              </div>
+        </section>
+
+        <!-- CORE CAPABILITIES -->
+        <section class="portfolio-group">
+          <div class="section-meta">CORE CAPABILITIES</div>
+          <h2 class="section-title">Enterprise Solutions & Engineering</h2>
+          <div class="capabilities-grid">
+            <div class="capability-card">
+              <h3>Architectural Advisory & Data Blueprinting</h3>
+              <p>Designing scalable data pipelines, enterprise infrastructure mapping, and optimization strategies for complex supply chain networks.</p>
             </div>
-            <div class="data-row">
-              <span class="row-index">02</span>
-              <div class="row-content">
-                <h3>Modular Logistics Routing</h3>
-                <p>Decoupled stream orchestration optimizing multi-modal supply chains for predictability, granular load balance, and asset utilization.</p>
-              </div>
-            </div>
-            <div class="data-row">
-              <span class="row-index">03</span>
-              <div class="row-content">
-                <h3>Functional Logistics Isolation</h3>
-                <p>Encapsulating single demands—Air, Sea, Road, and Rail Freight—into granular independent services to guarantee continuous execution safety.</p>
-              </div>
+            <div class="capability-card">
+              <h3>Sovereign Operational Frameworks</h3>
+              <p>End-to-end execution of custom logistics routers, multi-node consolidation hubs, and complete infrastructure deployment with client sovereignty.</p>
             </div>
           </div>
         </section>
 
-        <!-- 04 / Valuation Matrix & Data Warehouse Section -->
-        <section style="padding: 6rem 0 2rem 0; border-top: 1px solid var(--border-subtle);" class="section-valuation-en" id="valuation-en">
-          <div class="section-meta">04 / Engagement Matrix</div>
-          <h2 style="font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em;">Engineered Valuation Tier</h2>
-          
-          <div class="valuation-matrix">
-            <div class="valuation-node">
-              <div>
-                <div class="node-title">Architectural Design</div>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Comprehensive data blueprinting, pipeline mapping, and infrastructure advisory tailored for single-entity industrial structures.</p>
-              </div>
-              <div class="node-price" style="margin-top: 3rem;">$65,000+</div>
-            </div>
-            <div class="valuation-node premium">
-              <div>
-                <div class="node-title">Sovereignty Framework</div>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Full operational execution. Custom logistics router engineering, data pipeline building, and absolute infrastructure ownership transfer.</p>
-              </div>
-              <div class="node-price" style="margin-top: 3rem;">$150,000</div>
-            </div>
-          </div>
-        </section>
-
-        <!-- 🔗 Data Warehouse Integration Section (EN) -->
-        <section class="data-warehouse-section">
-          <p class="dw-title">Seamlessly Works With Your Existing Enterprise Data Infrastructure</p>
+        <!-- TECH STACK -->
+        <section class="dw-section">
+          <div class="section-meta" style="text-align: center;">Integrated Ecosystem</div>
           <div class="dw-grid">
-            <!-- Snowflake -->
             <div class="dw-card">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#29B5E8"><path d="M12 0L9.2 4.8l2.8 1.6V10H6.4L4.8 7.2 0 10l4.8 2.8L0 15.6l4.8 2.8 1.6-2.8H12v3.6l-2.8 1.6L12 24l2.8-4.8-2.8-1.6V14h5.6l1.6 2.8 4.8-2.8-4.8-2.8 4.8-2.8-4.8-2.8-1.6 2.8H12V6.4l2.8-1.6L12 0z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2L4.5 9.5L7.5 12.5L12 8L16.5 12.5L19.5 9.5L12 2ZM12 22L19.5 14.5L16.5 11.5L12 16L7.5 11.5L4.5 14.5L12 22Z"/></svg>
               <span>Snowflake</span>
             </div>
-            <!-- Google BigQuery -->
             <div class="dw-card">
-              <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/><path fill="#34A853" d="M12 11v6l4-2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
               <span>Google BigQuery</span>
             </div>
-            <!-- Amazon Redshift -->
             <div class="dw-card">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF9900"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.8L18.8 8.4 12 12 5.2 8.4 12 4.8zM4 9.8l7 3.9v6.9l-7-3.5V9.8zm16 7.3l-7 3.5v-6.9l7-3.9v7.3z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
               <span>Amazon Redshift</span>
             </div>
-            <!-- Databricks -->
             <div class="dw-card">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF3621"><path d="M12 2L2 7.2v9.6L12 22l10-5.2V7.2L12 2zm0 2.4l7.2 3.8-7.2 3.8-7.2-3.8L12 4.4zm-7.2 6.2l7.2 3.8 7.2-3.8v2.4L12 16.8 4.8 13v-2.4zm0 4.8l7.2 3.8 7.2-3.8v2.4L12 21.6l-7.2-3.8v-2.4z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l-10 6v8l10 6 10-6v-8l-10-6zm0 2.8l7 4.2v5.6l-7 4.2-7-4.2v-5.6l7-4.2z"/></svg>
               <span>Databricks</span>
             </div>
-            <!-- PostgreSQL -->
             <div class="dw-card">
-              <svg width="22" height="22" viewBox="0 0 25.6 25.6" fill="#336791">
-                <path d="M23.535 15.6c-2.89.596-3.1-.383-3.1-.383 3.053-4.53 4.33-10.28 3.228-11.687-3.004-3.84-8.205-2.023-8.292-1.976l-.028.005a10.31 10.31 0 0 0-1.929-.201c-1.308-.02-2.3.343-3.054.914 0 0-9.278-3.822-8.846 4.807.092 1.836 2.63 13.9 5.66 10.25C8.29 15.987 9.36 14.86 9.36 14.86c.53.353 1.167.533 1.834.468l.052-.044a2.02 2.02 0 0 0 .021.518c-.78.872-.55 1.025-2.11 1.346-1.578.325-.65.904-.046 1.056.734.184 2.432.444 3.58-1.162l-.046.183c.306.245.52 1.593.484 2.815s-.06 2.06.18 2.716.48 2.13 2.53 1.7c1.713-.367 2.6-1.32 2.725-2.906.088-1.128.286-.962.3-1.97l.16-.478c.183-1.53.03-2.023 1.085-1.793l.257.023c.777.035 1.794-.125 2.39-.402 1.285-.596 2.047-1.592.78-1.33z"/>
-              </svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
               <span>PostgreSQL</span>
             </div>
           </div>
@@ -594,137 +526,204 @@
     <div id="layer-th" class="lang-layer">
       <main class="container">
         
-        <!-- 🎯 Hero Section (Executive Copy - TH) -->
         <section class="hero-section">
-          <h1>สถาปัตยกรรม <span class="gold">ท่อส่งข้อมูล</span> และโครงสร้าง <span class="gold">Supply Chain ระดับองค์กร</span></h1>
-          <p class="hero-desc">วิศวกรรมระบบบริหารจัดการโลจิสติกส์ที่เป็นกรรมสิทธิ์ของคุณ เชื่อมโยงทุกคลังสินค้าและสายการผลิตอย่างสมบูรณ์</p>
+          <h1>สถาปัตยกรรม <span class="highlight">ท่อส่งข้อมูล</span> และโครงสร้าง <span class="highlight">ห่วงโซ่อุปทาน</span> ระดับองค์กร</h1>
+          <p class="hero-desc">ออกแบบสำหรับกระบวนการทำงานระดับองค์กรขนาดใหญ่ เพื่อความเป็นสิทธิ์ขาดในตรรกะธุรกิจ และการประสานข้อมูลหลายคลังสินค้าแบบเรียลไทม์</p>
           <button class="cta-trigger" onclick="openTidioChat()">ร่วมวิเคราะห์สถาปัตยกรรมระบบ</button>
         </section>
 
-        <!-- 01 / Aggregation Section -->
-        <section class="split-grid section-aggregation-th" id="aggregation-th">
-          <div class="grid-sticky-left">
-            <div class="section-meta">01 / แกนกลางการทำงาน</div>
-            <h2>การผสานรวมระบบปฏิบัติการภายใน</h2>
-          </div>
-          <div>
-            <div class="data-row">
-              <span class="row-index">01</span>
-              <div class="row-content">
-                <h3>Multi-Facility Synchronization</h3>
-                <p>รวบรวมท่อส่งข้อมูลที่กระจัดกระจายจากหลากหลายฐานการผลิตและคลังสินค้าให้เชื่อมต่อกันเป็นพาร์ทเดียว ลดช่องว่างและความล่าช้าระหว่างการจัดสรรสินค้าคงคลังกับขีดความสามารถจริงหน้างาน</p>
-              </div>
+        <!-- 01 / FUNCTIONAL CORE (TH) -->
+        <section class="portfolio-group">
+          <div class="arch-grid">
+            <div>
+              <div class="section-meta">01 / FUNCTIONAL CORE</div>
+              <h2 class="section-title">การรวมศูนย์การปฏิบัติการภายใน</h2>
             </div>
-            <div class="data-row">
-              <span class="row-index">02</span>
-              <div class="row-content">
-                <h3>Proprietary Logic Ownership</h3>
-                <p>ก้าวข้ามข้อจำกัดของซอฟต์แวร์สำเร็จรูป (SaaS) ทั่วไป อัลกอริทึมการจัดเส้นทาง ตรรกะธุรกรรม และการบริหารทรัพยากรภายในองค์กรของคุณ จะถูกพัฒนาและจัดเก็บอยู่บนพื้นที่ปลอดภัยที่เป็นกรรมสิทธิ์ของคุณเอง</p>
+            <div class="arch-list">
+              <div class="arch-item">
+                <span class="arch-num">01</span>
+                <div class="arch-content">
+                  <h3>การประสานข้อมูลหลายคลังสินค้า (Multi-Facility Synchronization)</h3>
+                  <p>รวมสายข้อมูลที่กระจัดกระจายจากศูนย์การผลิตต่างๆ เข้าสู่ชั้นการทำงานที่เป็นหนึ่งเดียว ขจัดความล่าช้าในการปรับปรุงข้อมูลสินค้าคงคลัง</p>
+                </div>
+              </div>
+              <div class="arch-item">
+                <span class="arch-num">02</span>
+                <div class="arch-content">
+                  <h3>ความเป็นเจ้าของตรรกะระบบ (Proprietary Logic Ownership)</h3>
+                  <p>ก้าวข้ามข้อจำกัดของแพลตฟอร์ม SaaS แบบเดิม ตรรกะการจัดเส้นทาง อัลกอริทึม และการจัดสรรทรัพยากรถูกพัฒนานทีฟให้อยู่ภายใต้การควบคุมของคุณ 100%</p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- 02 / System Blueprints (Horizontal Mobile Scroll) -->
-        <section class="blueprint-container section-architecture-th" id="architecture-th">
-          <div class="section-meta">02 / พิมพ์เขียวระบบ</div>
-          <h2 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 2rem; letter-spacing: -0.02em;">พิมพ์เขียวระบบโลจิสติกส์แบบคอมโพสเซเบิล</h2>
+        <!-- 02 / SYSTEM BLUEPRINTS (TH) -->
+        <section class="blueprint-section" id="projects-th">
+          <div class="section-meta">02 / SYSTEM BLUEPRINTS</div>
+          <h2 class="section-title">พิมพ์เขียวระบบโลจิสติกส์แบบโมดูลาร์</h2>
           
-          <p class="scroll-hint-text">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-            เลื่อนซ้าย-ขวาเพื่อดูรายละเอียด
-          </p>
+          <div class="scroll-hint">
+            <span>⇄ เลื่อนแนวนอนเพื่อดูรายละเอียดเพิ่มเติม</span>
+          </div>
 
-          <div class="blueprint-scroll-wrapper">
-            <div class="blueprint-wrapper">
-              <img src="/blueprint-3d.jpeg" alt="The Modular Logistics Blueprint" class="blueprint-img" />
+          <div class="blueprint-standalone-frame">
+            <img src="/blueprint-3d.jpeg" alt="The Modular Logistics Blueprint" />
+          </div>
+        </section>
+
+        <!-- 03 / INFRASTRUCTURE LAYERS (TH) -->
+        <section class="portfolio-group">
+          <div class="arch-grid">
+            <div>
+              <div class="section-meta">03 / INFRASTRUCTURE LAYERS</div>
+              <h2 class="section-title">ลำดับชั้นโครงสร้างเครือข่ายระบบ</h2>
+            </div>
+            <div class="arch-list">
+              <div class="arch-item">
+                <span class="arch-num">01</span>
+                <div class="arch-content">
+                  <h3>ชั้นการทำงานซัพพลายเชนแบบครบวงจร (Aggregate End-to-End Layer)</h3>
+                  <p>รวมโมดูลปฏิบัติการทั้งหมดเข้าสู่ระบบประมวลผลประสิทธิภาพสูง เพื่อประสานการเคลื่อนย้ายสินค้าข้ามโหนดขนส่งอย่างไร้รอยต่อ</p>
+                </div>
+              </div>
+              <div class="arch-item">
+                <span class="arch-num">02</span>
+                <div class="arch-content">
+                  <h3>การจัดเส้นทางโลจิสติกส์แบบแยกส่วน (Modular Logistics Routing)</h3>
+                  <p>ระบบการจัดการแบบกระจายส่วน ช่วยเพิ่มประสิทธิภาพโลจิสติกส์หลายรูปแบบเพื่อความแม่นยำและการกระจายภาระงานที่สมดุล</p>
+                </div>
+              </div>
+              <div class="arch-item">
+                <span class="arch-num">03</span>
+                <div class="arch-content">
+                  <h3>การแยกส่วนบริการขนส่ง (Functional Logistics Isolation)</h3>
+                  <p>แบ่งโหมดการขนส่ง—ทางอากาศ ทางเรือ ทางถนน และทางราง—ให้อยู่ในรูปแบบบริการอิสระ เพื่อการทำงานที่เสถียรและปลอดภัยสูงสุด</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- 03 / Infrastructure Layers -->
-        <section class="split-grid">
-          <div class="grid-sticky-left">
-            <div class="section-meta">03 / ลำดับชั้นโครงสร้าง</div>
-            <h2>ลำดับชั้นโครงสร้างเครือข่ายวิศวกรรม</h2>
+        <!-- ADDITIONAL WORK TRACK RECORD (TH) -->
+        <section class="portfolio-group" id="work-th">
+          <div class="section-meta">TRACK RECORD</div>
+          <h2 class="section-title">ประสบการณ์บริหารและปฏิบัติการ</h2>
+          <div class="portfolio-list">
+
+            <div class="portfolio-card">
+              <div class="portfolio-card-header">
+                <div class="header-main-info">
+                  <div class="header-top-row">
+                    <span class="item-year">2021</span>
+                    <span class="item-category">Container Mobilization</span>
+                  </div>
+                  <div class="title-location-wrap">
+                    <div class="item-title">Supply Chain & Port Infrastructure</div>
+                    <span class="item-location">ที่ปรึกษาองค์กร</span>
+                  </div>
+                </div>
+              </div>
+              <div class="featured-blueprint">
+                <img src="/project-2021.jpg" alt="Supply Chain & Port Infrastructure" />
+              </div>
+            </div>
+
+            <div class="portfolio-card">
+              <div class="portfolio-card-header">
+                <div class="header-main-info">
+                  <div class="header-top-row">
+                    <span class="item-year">2020</span>
+                    <span class="item-category">Fulfillment Hub</span>
+                  </div>
+                  <div class="title-location-wrap">
+                    <div class="item-title">Cross-Border E-Commerce Logistics</div>
+                    <span class="item-location">เซินเจิ้น, จีน</span>
+                  </div>
+                </div>
+              </div>
+              <div class="featured-blueprint">
+                <img src="/project-2020.jpg" alt="Cross-Border E-Commerce Logistics" />
+              </div>
+            </div>
+
+            <div class="portfolio-card">
+              <div class="portfolio-card-header">
+                <div class="header-main-info">
+                  <div class="header-top-row">
+                    <span class="item-year">2019</span>
+                    <span class="item-category">DEL Last-Mile Delivery</span>
+                  </div>
+                  <div class="title-location-wrap">
+                    <div class="item-title">Cross-Border & Domestic Parcel Operations</div>
+                    <span class="item-location">กรุงเทพฯ, ไทย</span>
+                  </div>
+                </div>
+              </div>
+              <div class="featured-blueprint">
+                <img src="/work-2019.jpg" alt="Parcel Operations" />
+              </div>
+            </div>
+
+            <div class="portfolio-card">
+              <div class="portfolio-card-header">
+                <div class="header-main-info">
+                  <div class="header-top-row">
+                    <span class="item-year">2015</span>
+                    <span class="item-category">Global Warehouse Consolidation</span>
+                  </div>
+                  <div class="title-location-wrap">
+                    <div class="item-title">International Buyer Consolidation</div>
+                    <span class="item-location">เมลเบิร์น & โคโลญจน์</span>
+                  </div>
+                </div>
+              </div>
+              <div class="featured-blueprint">
+                <img src="/work-2015.jpg" alt="International Buyer Consolidation" />
+              </div>
+            </div>
+
           </div>
-          <div>
-            <div class="data-row">
-              <span class="row-index">01</span>
-              <div class="row-content">
-                <h3>Aggregate End-to-End Supply Chain Layer</h3>
-                <p>การหลอมรวมโมดูลการปฏิบัติงานทั้งหมดเข้าสู่ระบบประมวลผลประสิทธิภาพสูง เพื่อควบคุมการเคลื่อนย้ายสินค้าเชื่อมโยงระหว่างจุดกระจายสัญญาณอย่างไร้รอยต่อ</p>
-              </div>
+        </section>
+
+        <!-- CORE CAPABILITIES (TH) -->
+        <section class="portfolio-group">
+          <div class="section-meta">CORE CAPABILITIES</div>
+          <h2 class="section-title">วิศวกรรมและโซลูชันระดับองค์กร</h2>
+          <div class="capabilities-grid">
+            <div class="capability-card">
+              <h3>คำปรึกษาเชิงสถาปัตยกรรมและแผนผังข้อมูล</h3>
+              <p>ออกแบบท่อส่งข้อมูลที่รองรับการเติบโต การวางผังโครงสร้างพื้นฐานระดับองค์กร และกลยุทธ์เพิ่มประสิทธิภาพห่วงโซ่อุปทานที่ซับซ้อน</p>
             </div>
-            <div class="data-row">
-              <span class="row-index">02</span>
-              <div class="row-content">
-                <h3>Modular Logistics Routing</h3>
-                <p>ระบบจัดเส้นทางโลจิสติกส์แบบ Decoupled ช่วยจัดการห่วงโซ่อุปทานที่มีความซับซ้อนให้สามารถพยากรณ์ล่วงหน้าได้ รักษาสมดุลของภาระงาน และการใช้สินทรัพย์อย่างคุ้มค่าสูงสุด</p>
-              </div>
-            </div>
-            <div class="data-row">
-              <span class="row-index">03</span>
-              <div class="row-content">
-                <h3>Functional Logistics Isolation</h3>
-                <p>แยกส่วนความต้องการการขนส่งเฉพาะด้าน—ทั้งทางอากาศ ทางทะเล ทางบก และทางราง—ออกเป็นโมดูลอิสระเพื่อความปลอดภัยและเสถียรภาพสูงสุดในการทำงาน</p>
-              </div>
+            <div class="capability-card">
+              <h3>ระบบปฏิบัติการและโครงสร้างพื้นฐานเบ็ดเสร็จ</h3>
+              <p>พัฒนาระบบเส้นทางโลจิสติกส์เฉพาะตัว ศูนย์รวมสินค้าหลายโหนด และการติดตั้งระบบโครงสร้างพื้นฐานเต็มรูปแบบพร้อมส่งมอบสิทธิ์ขาด 100%</p>
             </div>
           </div>
         </section>
 
-        <!-- 04 / Valuation Matrix & Data Warehouse Section -->
-        <section style="padding: 6rem 0 2rem 0; border-top: 1px solid var(--border-subtle);" class="section-valuation-th" id="valuation-th">
-          <div class="section-meta">04 / รูปแบบการพัฒนาระบบ</div>
-          <h2 style="font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em;">ระดับมูลค่าการวิศวกรรมสถาปัตยกรรม</h2>
-          
-          <div class="valuation-matrix">
-            <div class="valuation-node">
-              <div>
-                <div class="node-title">Architectural Design</div>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">การวางพิมพ์เขียวโครงสร้างข้อมูลอย่างครอบคลุม การทำแผนผังท่อส่งข้อมูล และการให้คำปรึกษาด้านโครงสร้างพื้นฐานสำหรับกลุ่มอุตสาหกรรม</p>
-              </div>
-              <div class="node-price" style="margin-top: 3rem;">$65,000+</div>
-            </div>
-            <div class="valuation-node premium">
-              <div>
-                <div class="node-title">Sovereignty Framework</div>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">การดำเนินงานเต็มรูปแบบ วิศวกรรมระบบเราเตอร์โลจิสติกส์เฉพาะตัว การสร้างโครงสร้างท่อข้อมูล และการส่งมอบสิทธิ์ขาดในโครงสร้างพื้นฐาน 100%</p>
-              </div>
-              <div class="node-price" style="margin-top: 3rem;">$150,000</div>
-            </div>
-          </div>
-        </section>
-
-        <!-- 🔗 Data Warehouse Integration Section (TH) -->
-        <section class="data-warehouse-section">
-          <p class="dw-title">Seamlessly Works With Your Existing Enterprise Data Infrastructure</p>
+        <!-- TECH STACK (TH) -->
+        <section class="dw-section">
+          <div class="section-meta" style="text-align: center;">Integrated Ecosystem</div>
           <div class="dw-grid">
-            <!-- Snowflake -->
             <div class="dw-card">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#29B5E8"><path d="M12 0L9.2 4.8l2.8 1.6V10H6.4L4.8 7.2 0 10l4.8 2.8L0 15.6l4.8 2.8 1.6-2.8H12v3.6l-2.8 1.6L12 24l2.8-4.8-2.8-1.6V14h5.6l1.6 2.8 4.8-2.8-4.8-2.8 4.8-2.8-4.8-2.8-1.6 2.8H12V6.4l2.8-1.6L12 0z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2L4.5 9.5L7.5 12.5L12 8L16.5 12.5L19.5 9.5L12 2ZM12 22L19.5 14.5L16.5 11.5L12 16L7.5 11.5L4.5 14.5L12 22Z"/></svg>
               <span>Snowflake</span>
             </div>
-            <!-- Google BigQuery -->
             <div class="dw-card">
-              <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/><path fill="#34A853" d="M12 11v6l4-2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
               <span>Google BigQuery</span>
             </div>
-            <!-- Amazon Redshift -->
             <div class="dw-card">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF9900"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.8L18.8 8.4 12 12 5.2 8.4 12 4.8zM4 9.8l7 3.9v6.9l-7-3.5V9.8zm16 7.3l-7 3.5v-6.9l7-3.9v7.3z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
               <span>Amazon Redshift</span>
             </div>
-            <!-- Databricks -->
             <div class="dw-card">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF3621"><path d="M12 2L2 7.2v9.6L12 22l10-5.2V7.2L12 2zm0 2.4l7.2 3.8-7.2 3.8-7.2-3.8L12 4.4zm-7.2 6.2l7.2 3.8 7.2-3.8v2.4L12 16.8 4.8 13v-2.4zm0 4.8l7.2 3.8 7.2-3.8v2.4L12 21.6l-7.2-3.8v-2.4z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l-10 6v8l10 6 10-6v-8l-10-6zm0 2.8l7 4.2v5.6l-7 4.2-7-4.2v-5.6l7-4.2z"/></svg>
               <span>Databricks</span>
             </div>
-            <!-- PostgreSQL -->
             <div class="dw-card">
-              <svg width="22" height="22" viewBox="0 0 25.6 25.6" fill="#336791">
-                <path d="M23.535 15.6c-2.89.596-3.1-.383-3.1-.383 3.053-4.53 4.33-10.28 3.228-11.687-3.004-3.84-8.205-2.023-8.292-1.976l-.028.005a10.31 10.31 0 0 0-1.929-.201c-1.308-.02-2.3.343-3.054.914 0 0-9.278-3.822-8.846 4.807.092 1.836 2.63 13.9 5.66 10.25C8.29 15.987 9.36 14.86 9.36 14.86c.53.353 1.167.533 1.834.468l.052-.044a2.02 2.02 0 0 0 .021.518c-.78.872-.55 1.025-2.11 1.346-1.578.325-.65.904-.046 1.056.734.184 2.432.444 3.58-1.162l-.046.183c.306.245.52 1.593.484 2.815s-.06 2.06.18 2.716.48 2.13 2.53 1.7c1.713-.367 2.6-1.32 2.725-2.906.088-1.128.286-.962.3-1.97l.16-.478c.183-1.53.03-2.023 1.085-1.793l.257.023c.777.035 1.794-.125 2.39-.402 1.285-.596 2.047-1.592.78-1.33z"/>
-              </svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
               <span>PostgreSQL</span>
             </div>
           </div>
@@ -734,7 +733,7 @@
     </div>
 
     <footer>
-      <div>&copy; 2026 UltraCompetitive. All rights reserved. Deployed via Astro on Cloudflare Pages.</div>
+      <div>&copy; 2026 UltraCompetitive. All rights reserved. Deployed via Astro.</div>
       <div>ADS v2.1 Architecture Framework</div>
     </footer>
 
@@ -783,9 +782,6 @@
       orchestrateLanguage();
       window.addEventListener('DOMContentLoaded', orchestrateLanguage);
 
-      // ===================================================================
-      // 🔥 Tidio Chat Trigger Handler
-      // ===================================================================
       function openTidioChat() {
         if (typeof tidioChatApi !== 'undefined') {
           tidioChatApi.open();

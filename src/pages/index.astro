@@ -87,9 +87,6 @@
 
       .portfolio-group { padding: 5rem 0; border-top: 1px solid var(--border-subtle); }
 
-      /* =================================================================== */
-      /* 🌟 02 / SYSTEM BLUEPRINTS (SCROLLABLE IMAGE)                       */
-      /* =================================================================== */
       .blueprint-section {
         padding: 5rem 0;
         border-top: 1px solid var(--border-subtle);
@@ -131,9 +128,6 @@
       .blueprint-standalone-frame::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 4px; }
       .blueprint-standalone-frame::-webkit-scrollbar-thumb { background: var(--accent-orange); border-radius: 4px; }
 
-      /* =================================================================== */
-      /* 🌟 TWO-COLUMN ARCHITECTURE LAYOUT                                  */
-      /* =================================================================== */
       .arch-grid {
         display: grid;
         grid-template-columns: 1fr 1.2fr;
@@ -148,9 +142,6 @@
       .arch-content h3 { font-size: 1.15rem; font-weight: 600; color: var(--text-pure); margin-bottom: 0.6rem; }
       .arch-content p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
-      /* =================================================================== */
-      /* 🌟 TRACK RECORD CARDS (MOBILE OPTIMIZED LAYOUT)                     */
-      /* =================================================================== */
       .portfolio-list { display: flex; flex-direction: column; gap: 4rem; width: 100%; }
       .portfolio-card { display: flex; flex-direction: column; gap: 1.2rem; width: 100%; }
       
@@ -232,7 +223,6 @@
       }
       .featured-blueprint:hover img { transform: scale(1.02); }
 
-      /* Mobile UI Optimization */
       @media (max-width: 768px) {
         .arch-grid { grid-template-columns: 1fr; gap: 2rem; }
         .blueprint-standalone-frame { padding: 0.8rem; }
@@ -285,7 +275,6 @@
 
       footer { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem 3rem 2rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-dim); }
 
-      /* Strict Language Layer Hiding Rules */
       .lang-layer { display: none !important; }
       .lang-layer.active-layer { display: block !important; }
     </style>
@@ -308,19 +297,15 @@
       </nav>
     </header>
 
-    <!-- =================================================================== -->
-    <!-- 🌐 ENGLISH LANGUAGE LAYER                                          -->
-    <!-- =================================================================== -->
+    <!-- ENGLISH LAYER -->
     <div id="layer-en" class="lang-layer">
       <main class="container">
-        
         <section class="hero-section">
           <h1>Sovereign <span class="highlight">Data Pipelines</span> & Enterprise <span class="highlight">Supply Chain</span> Infrastructure</h1>
           <p class="hero-desc">Engineered for large-scale enterprise control, proprietary business logic, and multi-facility synchronization.</p>
           <button class="cta-trigger" onclick="openTidioChat()">Discuss Architecture Blueprint</button>
         </section>
 
-        <!-- 01 / FUNCTIONAL CORE -->
         <section class="portfolio-group">
           <div class="arch-grid">
             <div>
@@ -346,21 +331,17 @@
           </div>
         </section>
 
-        <!-- 02 / SYSTEM BLUEPRINTS -->
         <section class="blueprint-section" id="projects-en">
           <div class="section-meta">02 / SYSTEM BLUEPRINTS</div>
           <h2 class="section-title">The Modular Logistics Blueprint</h2>
-          
           <div class="scroll-hint">
             <span>⇄ Scroll horizontally to view details</span>
           </div>
-
           <div class="blueprint-standalone-frame">
-            <img src="/blueprint-3d.jpeg" alt="The Modular Logistics Blueprint" />
+            <img src="/blueprint-3d.jpeg" alt="The Modular Logistics Blueprint" loading="eager" />
           </div>
         </section>
 
-        <!-- 03 / INFRASTRUCTURE LAYERS -->
         <section class="portfolio-group">
           <div class="arch-grid">
             <div>
@@ -393,7 +374,7 @@
           </div>
         </section>
 
-        <!-- ADDITIONAL WORK TRACK RECORD -->
+        <!-- TRACK RECORD EN -->
         <section class="portfolio-group" id="work-en">
           <div class="section-meta">TRACK RECORD</div>
           <h2 class="section-title">Commercial Experience & Operations</h2>
@@ -413,7 +394,7 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/project-2021.jpg" alt="Supply Chain & Port Infrastructure" />
+                <img src="/project-2021.jpg" alt="Supply Chain & Port Infrastructure" loading="lazy" decoding="async" />
               </div>
             </div>
 
@@ -431,7 +412,7 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/project-2020.jpg" alt="Cross-Border E-Commerce Logistics" />
+                <img src="/project-2020.jpg" alt="Cross-Border E-Commerce Logistics" loading="lazy" decoding="async" />
               </div>
             </div>
 
@@ -449,7 +430,7 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/work-2019.jpg" alt="Parcel Operations" />
+                <img src="/work-2019.jpg" alt="Parcel Operations" loading="lazy" decoding="async" />
               </div>
             </div>
 
@@ -467,14 +448,13 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/work-2015.jpg" alt="International Buyer Consolidation" />
+                <img src="/work-2015.jpg" alt="International Buyer Consolidation" loading="lazy" decoding="async" />
               </div>
             </div>
 
           </div>
         </section>
 
-        <!-- CORE CAPABILITIES -->
         <section class="portfolio-group">
           <div class="section-meta">CORE CAPABILITIES</div>
           <h2 class="section-title">Enterprise Solutions & Engineering</h2>
@@ -490,7 +470,6 @@
           </div>
         </section>
 
-        <!-- TECH STACK -->
         <section class="dw-section">
           <div class="section-meta" style="text-align: center;">Integrated Ecosystem</div>
           <div class="dw-grid">
@@ -516,23 +495,18 @@
             </div>
           </div>
         </section>
-
       </main>
     </div>
 
-    <!-- =================================================================== -->
-    <!-- 🇹🇭 THAI LANGUAGE LAYER                                            -->
-    <!-- =================================================================== -->
+    <!-- THAI LAYER -->
     <div id="layer-th" class="lang-layer">
       <main class="container">
-        
         <section class="hero-section">
           <h1>สถาปัตยกรรม <span class="highlight">ท่อส่งข้อมูล</span> และโครงสร้าง <span class="highlight">ห่วงโซ่อุปทาน</span> ระดับองค์กร</h1>
           <p class="hero-desc">ออกแบบสำหรับกระบวนการทำงานระดับองค์กรขนาดใหญ่ เพื่อความเป็นสิทธิ์ขาดในตรรกะธุรกิจ และการประสานข้อมูลหลายคลังสินค้าแบบเรียลไทม์</p>
           <button class="cta-trigger" onclick="openTidioChat()">ร่วมวิเคราะห์สถาปัตยกรรมระบบ</button>
         </section>
 
-        <!-- 01 / FUNCTIONAL CORE (TH) -->
         <section class="portfolio-group">
           <div class="arch-grid">
             <div>
@@ -558,21 +532,17 @@
           </div>
         </section>
 
-        <!-- 02 / SYSTEM BLUEPRINTS (TH) -->
         <section class="blueprint-section" id="projects-th">
           <div class="section-meta">02 / SYSTEM BLUEPRINTS</div>
           <h2 class="section-title">พิมพ์เขียวระบบโลจิสติกส์แบบโมดูลาร์</h2>
-          
           <div class="scroll-hint">
             <span>⇄ เลื่อนแนวนอนเพื่อดูรายละเอียดเพิ่มเติม</span>
           </div>
-
           <div class="blueprint-standalone-frame">
-            <img src="/blueprint-3d.jpeg" alt="The Modular Logistics Blueprint" />
+            <img src="/blueprint-3d.jpeg" alt="The Modular Logistics Blueprint" loading="eager" />
           </div>
         </section>
 
-        <!-- 03 / INFRASTRUCTURE LAYERS (TH) -->
         <section class="portfolio-group">
           <div class="arch-grid">
             <div>
@@ -605,7 +575,7 @@
           </div>
         </section>
 
-        <!-- ADDITIONAL WORK TRACK RECORD (TH) -->
+        <!-- TRACK RECORD TH -->
         <section class="portfolio-group" id="work-th">
           <div class="section-meta">TRACK RECORD</div>
           <h2 class="section-title">ประสบการณ์บริหารและปฏิบัติการ</h2>
@@ -625,7 +595,7 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/project-2021.jpg" alt="Supply Chain & Port Infrastructure" />
+                <img src="/project-2021.jpg" alt="Supply Chain & Port Infrastructure" loading="lazy" decoding="async" />
               </div>
             </div>
 
@@ -643,7 +613,7 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/project-2020.jpg" alt="Cross-Border E-Commerce Logistics" />
+                <img src="/project-2020.jpg" alt="Cross-Border E-Commerce Logistics" loading="lazy" decoding="async" />
               </div>
             </div>
 
@@ -661,7 +631,7 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/work-2019.jpg" alt="Parcel Operations" />
+                <img src="/work-2019.jpg" alt="Parcel Operations" loading="lazy" decoding="async" />
               </div>
             </div>
 
@@ -679,14 +649,13 @@
                 </div>
               </div>
               <div class="featured-blueprint">
-                <img src="/work-2015.jpg" alt="International Buyer Consolidation" />
+                <img src="/work-2015.jpg" alt="International Buyer Consolidation" loading="lazy" decoding="async" />
               </div>
             </div>
 
           </div>
         </section>
 
-        <!-- CORE CAPABILITIES (TH) -->
         <section class="portfolio-group">
           <div class="section-meta">CORE CAPABILITIES</div>
           <h2 class="section-title">วิศวกรรมและโซลูชันระดับองค์กร</h2>
@@ -702,7 +671,6 @@
           </div>
         </section>
 
-        <!-- TECH STACK (TH) -->
         <section class="dw-section">
           <div class="section-meta" style="text-align: center;">Integrated Ecosystem</div>
           <div class="dw-grid">
@@ -728,7 +696,6 @@
             </div>
           </div>
         </section>
-
       </main>
     </div>
 
@@ -770,10 +737,8 @@
       function scrollToSection(sectionName) {
         const urlParams = new URLSearchParams(window.location.search);
         const lang = urlParams.get('lang') || (navigator.language.startsWith('th') ? 'th' : 'en');
-        
         const targetId = `${sectionName}-${lang}`;
         const targetElement = document.getElementById(targetId);
-        
         if (targetElement) {
           targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }

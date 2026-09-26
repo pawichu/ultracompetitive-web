@@ -35,9 +35,20 @@
         -webkit-font-smoothing: antialiased;
       }
 
-      h1, h2, h3, .section-title, .hero-section h1 {
+      /* Heading Fonts */
+      h2, h3, .section-title, .hero-section h1 {
         font-family: "Newsreader", Georgia, Cambria, "Times New Roman", Times, serif;
         font-weight: 400;
+        letter-spacing: -0.02em;
+      }
+
+      /* ISSUE 2 FIX: Main Header font set to Helvetica */
+      .track-record-header {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+        font-size: 2.2rem;
+        font-weight: 600;
+        margin-bottom: 2.5rem;
+        color: var(--text-pure);
         letter-spacing: -0.02em;
       }
 
@@ -160,41 +171,32 @@
       .portfolio-list { display: flex; flex-direction: column; gap: 4rem; width: 100%; }
       .portfolio-card { display: flex; flex-direction: column; gap: 1.2rem; width: 100%; }
       
+      /* ISSUE 1 FIX: Clean Aligned Header & Tag Layout */
       .portfolio-card-header {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.6rem;
         width: 100%;
-        gap: 1.5rem;
       }
 
-      .header-main-info {
+      .card-top-meta-row {
         display: flex;
-        align-items: flex-start;
-        gap: 1.5rem;
-        flex: 1;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      .meta-left-group {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
       }
 
       .item-year {
         color: var(--text-dim);
-        font-size: 0.9rem;
-        font-weight: 500;
+        font-size: 0.85rem;
+        font-weight: 600;
         white-space: nowrap;
-        padding-top: 0.2rem;
-      }
-
-      .title-location-wrap {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        flex: 1;
-      }
-
-      .item-title {
-        font-family: "Newsreader", Georgia, serif;
-        font-size: 1.45rem;
-        color: var(--text-pure);
-        line-height: 1.35;
       }
 
       .item-category {
@@ -204,18 +206,26 @@
         color: var(--text-muted);
         font-weight: 600;
         white-space: nowrap;
-        padding-top: 0.2rem;
+      }
+
+      .item-title {
+        font-family: "Newsreader", Georgia, serif;
+        font-size: 1.45rem;
+        color: var(--text-pure);
+        line-height: 1.35;
       }
 
       .item-location {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         font-size: 0.75rem;
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         color: var(--text-muted);
-        padding: 0.25rem 0.65rem;
+        padding: 0.25rem 0.75rem;
         border-radius: 4px;
         font-weight: 400;
-        width: fit-content;
+        white-space: nowrap;
       }
 
       .featured-blueprint {
@@ -268,10 +278,6 @@
         .container { padding: 0 1.25rem; }
         .arch-grid { grid-template-columns: 1fr; gap: 2rem; }
         .blueprint-standalone-frame { padding: 0.8rem; }
-        .portfolio-card-header { flex-direction: column; gap: 0.6rem; }
-        .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .header-main-info { flex-direction: column; gap: 0.4rem; width: 100%; }
-        .item-category { text-align: right; }
         .featured-blueprint { height: 260px; }
       }
     </style>
@@ -374,75 +380,73 @@
         <!-- TRACK RECORD EN -->
         <section class="portfolio-group" id="work">
           <div class="section-meta">TRACK RECORD</div>
-          <h2 class="section-title">Commercial Experience & Operations</h2>
+          <!-- Issue 2: Uses Helvetica Font -->
+          <h1 class="track-record-header">Commercial Experience & Operations</h1>
           <div class="portfolio-list">
 
+            <!-- Card 1 -->
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <!-- Issue 1: Year, Category & Tag placed on top row -->
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2021</span>
-                    <span class="item-category">Container Mobilization</span>
+                    <span class="item-category">CONTAINER MOBILIZATION</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">Supply Chain & Port Infrastructure</div>
-                    <span class="item-location">Consultation</span>
-                  </div>
+                  <span class="item-location">Consultation</span>
                 </div>
+                <div class="item-title">Supply Chain & Port Infrastructure</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/project-2021.jpg" alt="Supply Chain & Port Infrastructure" loading="eager" />
               </div>
             </div>
 
+            <!-- Card 2 -->
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2020</span>
-                    <span class="item-category">Fulfillment Hub</span>
+                    <span class="item-category">FULFILLMENT HUB</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">Cross-Border E-Commerce Logistics</div>
-                    <span class="item-location">Shenzhen, CN</span>
-                  </div>
+                  <span class="item-location">Shenzhen, CN</span>
                 </div>
+                <div class="item-title">Cross-Border E-Commerce Logistics</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/project-2020.jpg" alt="Cross-Border E-Commerce Logistics" loading="eager" />
               </div>
             </div>
 
+            <!-- Card 3 -->
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2019</span>
-                    <span class="item-category">DEL Last-Mile Delivery</span>
+                    <span class="item-category">DEL LAST-MILE DELIVERY</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">Cross-Border & Domestic Parcel Operations</div>
-                    <span class="item-location">Bangkok, TH</span>
-                  </div>
+                  <span class="item-location">Bangkok, TH</span>
                 </div>
+                <div class="item-title">Cross-Border & Domestic Parcel Operations</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/work-2019.jpg" alt="Parcel Operations" loading="eager" />
               </div>
             </div>
 
+            <!-- Card 4 -->
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2015</span>
-                    <span class="item-category">Global Warehouse Consolidation</span>
+                    <span class="item-category">GLOBAL WAREHOUSE CONSOLIDATION</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">International Buyer Consolidation</div>
-                    <span class="item-location">Melbourne & Cologne</span>
-                  </div>
+                  <span class="item-location">Melbourne & Cologne</span>
                 </div>
+                <div class="item-title">International Buyer Consolidation</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/work-2015.jpg" alt="International Buyer Consolidation" loading="eager" />
@@ -575,75 +579,72 @@
         <!-- TRACK RECORD TH -->
         <section class="portfolio-group" id="work-th">
           <div class="section-meta">TRACK RECORD</div>
-          <h2 class="section-title">ประสบการณ์บริหารและปฏิบัติการ</h2>
+          <!-- Issue 2: Uses Helvetica Font -->
+          <h1 class="track-record-header">ประสบการณ์บริหารและปฏิบัติการ</h1>
           <div class="portfolio-list">
 
+            <!-- Card 1 -->
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2021</span>
-                    <span class="item-category">Container Mobilization</span>
+                    <span class="item-category">CONTAINER MOBILIZATION</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">Supply Chain & Port Infrastructure</div>
-                    <span class="item-location">ที่ปรึกษาองค์กร</span>
-                  </div>
+                  <span class="item-location">ที่ปรึกษาองค์กร</span>
                 </div>
+                <div class="item-title">Supply Chain & Port Infrastructure</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/project-2021.jpg" alt="Supply Chain & Port Infrastructure" loading="eager" />
               </div>
             </div>
 
+            <!-- Card 2 -->
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2020</span>
-                    <span class="item-category">Fulfillment Hub</span>
+                    <span class="item-category">FULFILLMENT HUB</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">Cross-Border E-Commerce Logistics</div>
-                    <span class="item-location">เซินเจิ้น, จีน</span>
-                  </div>
+                  <span class="item-location">เซินเจิ้น, จีน</span>
                 </div>
+                <div class="item-title">Cross-Border E-Commerce Logistics</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/project-2020.jpg" alt="Cross-Border E-Commerce Logistics" loading="eager" />
               </div>
             </div>
 
+            <!-- Card 3 -->
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2019</span>
-                    <span class="item-category">DEL Last-Mile Delivery</span>
+                    <span class="item-category">DEL LAST-MILE DELIVERY</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">Cross-Border & Domestic Parcel Operations</div>
-                    <span class="item-location">กรุงเทพฯ, ไทย</span>
-                  </div>
+                  <span class="item-location">กรุงเทพฯ, ไทย</span>
                 </div>
+                <div class="item-title">Cross-Border & Domestic Parcel Operations</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/work-2019.jpg" alt="Parcel Operations" loading="eager" />
               </div>
             </div>
 
+            <!-- Card 4 -->
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2015</span>
-                    <span class="item-category">Global Warehouse Consolidation</span>
+                    <span class="item-category">GLOBAL WAREHOUSE CONSOLIDATION</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">International Buyer Consolidation</div>
-                    <span class="item-location">เมลเบิร์น & โคโลญจน์</span>
-                  </div>
+                  <span class="item-location">เมลเบิร์น & โคโลญจน์</span>
                 </div>
+                <div class="item-title">International Buyer Consolidation</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/work-2015.jpg" alt="International Buyer Consolidation" loading="eager" />

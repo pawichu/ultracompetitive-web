@@ -12,7 +12,8 @@
 
     <script src="//code.tidio.co/phnlyg5kum5wnygb7aqtmzluecmufqao.js" async></script>
 
-    <style>
+    <!-- ใส่ is:global เพื่อบังคับให้ Astro นำ CSS ไปใช้งานจริงทั้งหน้า -->
+    <style is:global>
       :root {
         --bg-pure: #0b0d0e;
         --bg-surface: #121517;
@@ -387,7 +388,6 @@
             <!-- Card 1 -->
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <!-- Issue 1: Year, Category & Tag placed on top row -->
                 <div class="card-top-meta-row">
                   <div class="meta-left-group">
                     <span class="item-year">2021</span>

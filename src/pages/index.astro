@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UltraCompetitive | Sovereign Logistics & Data Architecture</title>
     
+    <!-- Google Font Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap" rel="stylesheet">
+
     <script src="//code.tidio.co/phnlyg5kum5wnygb7aqtmzluecmufqao.js" async></script>
 
-    <!-- ใส่ is:global เพื่อให้ Astro ดึงสไตล์เดิมไปใช้ได้อย่างถูกต้อง -->
     <style is:global>
       :root {
         --bg-pure: #070708;
@@ -16,8 +20,6 @@
         --text-pure: #ffffff;
         --text-muted: #a1a1aa;
         --text-dim: #52525b;
-        --accent-orange: #ff6b00;
-        --accent-glow: rgba(255, 107, 0, 0.15);
         --border-subtle: #1e1f24;
       }
 
@@ -32,6 +34,13 @@
         -webkit-font-smoothing: antialiased;
       }
 
+      /* Consistent Serif Font for all Section Headings */
+      h1, h2, h3, .section-title, .hero-section h1, .track-record-header {
+        font-family: "Newsreader", Georgia, Cambria, "Times New Roman", Times, serif;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+      }
+
       header {
         max-width: 1100px;
         margin: 0 auto;
@@ -39,9 +48,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 1.5rem;
       }
 
-      .logo { font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-orange); }
+      .logo { font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-pure); white-space: nowrap; }
 
       nav { display: flex; align-items: center; gap: 2rem; }
       .nav-links { display: flex; gap: 2rem; }
@@ -58,13 +68,13 @@
         padding-left: 1.5rem;
       }
       .lang-btn { color: var(--text-dim); text-decoration: none; cursor: pointer; transition: color 0.2s; }
-      .lang-btn.active { color: var(--accent-orange); font-weight: 700; }
+      .lang-btn.active { color: var(--text-pure); font-weight: 700; }
 
       .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
       .hero-section { padding: 6rem 0 5rem 0; max-width: 880px; }
-      .hero-section h1 { font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 1.08; font-weight: 600; margin-bottom: 2rem; letter-spacing: -0.03em; color: var(--text-pure); }
-      .hero-section h1 .highlight { color: var(--accent-orange); }
+      .hero-section h1 { font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 1.08; margin-bottom: 2rem; color: var(--text-pure); }
+      .hero-section h1 .highlight { font-style: italic; color: var(--text-pure); }
       .hero-desc { font-size: 1.15rem; color: var(--text-muted); max-width: 680px; margin-bottom: 3rem; line-height: 1.6; }
 
       .cta-trigger {
@@ -72,19 +82,25 @@
         align-items: center;
         background: transparent;
         color: var(--text-pure);
-        border: 1px solid var(--accent-orange);
+        border: 1px solid var(--border-subtle);
         padding: 0.85rem 2.2rem;
         font-size: 0.85rem;
         font-weight: 500;
         border-radius: 50px;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 0 0 15px var(--accent-glow);
       }
-      .cta-trigger:hover { background: var(--accent-orange); color: #000; box-shadow: 0 0 25px rgba(255, 107, 0, 0.4); }
+      .cta-trigger:hover { background: var(--text-pure); color: var(--bg-pure); }
 
-      .section-meta { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-orange); margin-bottom: 1.2rem; font-weight: 600; }
-      .section-title { font-size: 2rem; font-weight: 600; margin-bottom: 2.5rem; letter-spacing: -0.02em; color: var(--text-pure); }
+      .section-meta { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 1.2rem; font-weight: 600; }
+      .section-title { font-size: 2rem; margin-bottom: 2.5rem; color: var(--text-pure); }
+
+      /* Issue 5: Track Record Heading uses consistent Serif Font */
+      .track-record-header {
+        font-size: 2.2rem;
+        margin-bottom: 2.5rem;
+        color: var(--text-pure);
+      }
 
       .portfolio-group { padding: 5rem 0; border-top: 1px solid var(--border-subtle); }
 
@@ -127,7 +143,7 @@
 
       .blueprint-standalone-frame::-webkit-scrollbar { height: 6px; }
       .blueprint-standalone-frame::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 4px; }
-      .blueprint-standalone-frame::-webkit-scrollbar-thumb { background: var(--accent-orange); border-radius: 4px; }
+      .blueprint-standalone-frame::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 4px; }
 
       .arch-grid {
         display: grid;
@@ -140,7 +156,7 @@
       .arch-item { display: flex; gap: 1.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-subtle); }
       .arch-item:last-child { border-bottom: none; }
       .arch-num { font-size: 0.8rem; font-weight: 600; color: var(--text-dim); min-width: 24px; padding-top: 0.2rem; }
-      .arch-content h3 { font-size: 1.15rem; font-weight: 600; color: var(--text-pure); margin-bottom: 0.6rem; }
+      .arch-content h3 { font-size: 1.25rem; color: var(--text-pure); margin-bottom: 0.6rem; }
       .arch-content p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
       .portfolio-list { display: flex; flex-direction: column; gap: 4rem; width: 100%; }
@@ -148,66 +164,63 @@
       
       .portfolio-card-header {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.6rem;
         width: 100%;
-        gap: 1.5rem;
       }
 
-      .header-main-info {
+      .card-top-meta-row {
         display: flex;
-        align-items: flex-start;
-        gap: 1.5rem;
-        flex: 1;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      .meta-left-group {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
       }
 
       .item-year {
         color: var(--text-dim);
-        font-size: 0.9rem;
-        font-weight: 500;
-        white-space: nowrap;
-        padding-top: 0.2rem;
-      }
-
-      .title-location-wrap {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        flex: 1;
-      }
-
-      .item-title {
-        font-size: 1.35rem;
+        font-size: 0.85rem;
         font-weight: 600;
-        color: var(--text-pure);
-        letter-spacing: -0.02em;
-        line-height: 1.35;
+        white-space: nowrap;
       }
 
       .item-category {
         font-size: 0.75rem;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        color: var(--accent-orange);
+        color: var(--text-muted);
         font-weight: 600;
         white-space: nowrap;
-        padding-top: 0.2rem;
+      }
+
+      .item-title {
+        font-size: 1.45rem;
+        color: var(--text-pure);
+        line-height: 1.35;
       }
 
       .item-location {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         font-size: 0.75rem;
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         color: var(--text-muted);
-        padding: 0.25rem 0.65rem;
+        padding: 0.25rem 0.75rem;
         border-radius: 4px;
         font-weight: 400;
-        width: fit-content;
+        white-space: nowrap;
       }
 
+      /* Issue 5: Rectangle image frame */
       .featured-blueprint {
         width: 100%;
-        height: 420px;
+        height: 380px;
         overflow: hidden;
         border-radius: 14px;
         background: var(--bg-surface);
@@ -226,7 +239,7 @@
 
       .capabilities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
       .capability-card { background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 3rem; border-radius: 16px; }
-      .capability-card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-pure); }
+      .capability-card h3 { font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-pure); }
       .capability-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
       .dw-section { padding: 5rem 0; border-top: 1px solid var(--border-subtle); }
@@ -243,7 +256,7 @@
         font-weight: 500; 
         color: var(--text-muted); 
       }
-      .dw-card svg { width: 18px; height: 18px; fill: var(--accent-orange); display: block; }
+      .dw-card svg { width: 18px; height: 18px; fill: var(--text-muted); display: block; }
 
       footer { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem 3rem 2rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-dim); }
 
@@ -267,11 +280,14 @@
         overflow: visible !important;
       }
 
-      /* MOBILE RESPONSIVE FIXES */
+      /* ========================================================= */
+      /* MOBILE RESPONSIVE FIXES (รูปที่ 1, 2-4, 5)                  */
+      /* ========================================================= */
       @media (max-width: 768px) {
+        /* Issue 1: Fix logo and menu collision */
         header {
-          padding: 1.5rem 1rem;
-          gap: 0.5rem;
+          padding: 1.25rem 1rem;
+          justify-content: space-between;
         }
 
         .logo {
@@ -280,7 +296,7 @@
         }
 
         nav {
-          gap: 1rem;
+          gap: 0.8rem;
         }
 
         .nav-links {
@@ -292,7 +308,7 @@
         }
 
         .lang-switcher {
-          padding-left: 0.8rem;
+          padding-left: 0.6rem;
           gap: 0.3rem;
         }
 
@@ -300,32 +316,29 @@
           padding: 0 1.25rem;
         }
 
-        .arch-grid { grid-template-columns: 1fr; gap: 2rem; }
+        /* Issue 2-4: Stack content vertically in single column */
+        .arch-grid { 
+          grid-template-columns: 1fr; 
+          gap: 2rem; 
+        }
+
+        .arch-item {
+          gap: 1rem;
+          padding-bottom: 1.5rem;
+        }
+
         .blueprint-standalone-frame { padding: 0.8rem; }
-        
-        .portfolio-card-header {
-          flex-direction: column;
-          gap: 0.6rem;
+
+        /* Issue 5: Adjust image aspect ratio on mobile to landscape rectangle */
+        .featured-blueprint { 
+          height: 210px; 
+          border-radius: 10px;
         }
 
-        .header-top-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          width: 100%;
+        .track-record-header {
+          font-size: 1.75rem;
+          margin-bottom: 1.75rem;
         }
-
-        .header-main-info {
-          flex-direction: column;
-          gap: 0.4rem;
-          width: 100%;
-        }
-
-        .item-category {
-          text-align: right;
-        }
-
-        .featured-blueprint { height: 260px; }
       }
     </style>
   </head>
@@ -356,6 +369,7 @@
           <button class="cta-trigger" onclick="openTidioChat()">Discuss Architecture Blueprint</button>
         </section>
 
+        <!-- Issue 2-4: Mobile responsive single column -->
         <section class="portfolio-group">
           <div class="arch-grid">
             <div>
@@ -427,21 +441,20 @@
         <!-- TRACK RECORD EN -->
         <section class="portfolio-group" id="work-en">
           <div class="section-meta">TRACK RECORD</div>
-          <h2 class="section-title">Commercial Experience & Operations</h2>
+          <!-- Issue 5: Updated font & responsive image rectangle -->
+          <h2 class="track-record-header">Commercial Experience & Operations</h2>
           <div class="portfolio-list">
 
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2021</span>
-                    <span class="item-category">Container Mobilization</span>
+                    <span class="item-category">CONTAINER MOBILIZATION</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">Supply Chain & Port Infrastructure</div>
-                    <span class="item-location">Consultation</span>
-                  </div>
+                  <span class="item-location">Consultation</span>
                 </div>
+                <div class="item-title">Supply Chain & Port Infrastructure</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/project-2021.jpg" alt="Supply Chain & Port Infrastructure" loading="eager" decoding="sync" />
@@ -450,16 +463,14 @@
 
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2020</span>
-                    <span class="item-category">Fulfillment Hub</span>
+                    <span class="item-category">FULFILLMENT HUB</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">Cross-Border E-Commerce Logistics</div>
-                    <span class="item-location">Shenzhen, CN</span>
-                  </div>
+                  <span class="item-location">Shenzhen, CN</span>
                 </div>
+                <div class="item-title">Cross-Border E-Commerce Logistics</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/project-2020.jpg" alt="Cross-Border E-Commerce Logistics" loading="eager" decoding="sync" />
@@ -468,16 +479,14 @@
 
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2019</span>
-                    <span class="item-category">DEL Last-Mile Delivery</span>
+                    <span class="item-category">DEL LAST-MILE DELIVERY</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">Cross-Border & Domestic Parcel Operations</div>
-                    <span class="item-location">Bangkok, TH</span>
-                  </div>
+                  <span class="item-location">Bangkok, TH</span>
                 </div>
+                <div class="item-title">Cross-Border & Domestic Parcel Operations</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/work-2019.jpg" alt="Parcel Operations" loading="eager" decoding="sync" />
@@ -486,16 +495,14 @@
 
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2015</span>
-                    <span class="item-category">Global Warehouse Consolidation</span>
+                    <span class="item-category">GLOBAL WAREHOUSE CONSOLIDATION</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">International Buyer Consolidation</div>
-                    <span class="item-location">Melbourne & Cologne</span>
-                  </div>
+                  <span class="item-location">Melbourne & Cologne</span>
                 </div>
+                <div class="item-title">International Buyer Consolidation</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/work-2015.jpg" alt="International Buyer Consolidation" loading="eager" decoding="sync" />
@@ -628,21 +635,19 @@
         <!-- TRACK RECORD TH -->
         <section class="portfolio-group" id="work-th">
           <div class="section-meta">TRACK RECORD</div>
-          <h2 class="section-title">ประสบการณ์บริหารและปฏิบัติการ</h2>
+          <h2 class="track-record-header">ประสบการณ์บริหารและปฏิบัติการ</h2>
           <div class="portfolio-list">
 
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2021</span>
-                    <span class="item-category">Container Mobilization</span>
+                    <span class="item-category">CONTAINER MOBILIZATION</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">Supply Chain & Port Infrastructure</div>
-                    <span class="item-location">ที่ปรึกษาองค์กร</span>
-                  </div>
+                  <span class="item-location">ที่ปรึกษาองค์กร</span>
                 </div>
+                <div class="item-title">Supply Chain & Port Infrastructure</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/project-2021.jpg" alt="Supply Chain & Port Infrastructure" loading="eager" decoding="sync" />
@@ -651,16 +656,14 @@
 
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2020</span>
-                    <span class="item-category">Fulfillment Hub</span>
+                    <span class="item-category">FULFILLMENT HUB</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">Cross-Border E-Commerce Logistics</div>
-                    <span class="item-location">เซินเจิ้น, จีน</span>
-                  </div>
+                  <span class="item-location">เซินเจิ้น, จีน</span>
                 </div>
+                <div class="item-title">Cross-Border E-Commerce Logistics</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/project-2020.jpg" alt="Cross-Border E-Commerce Logistics" loading="eager" decoding="sync" />
@@ -669,16 +672,14 @@
 
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2019</span>
-                    <span class="item-category">DEL Last-Mile Delivery</span>
+                    <span class="item-category">DEL LAST-MILE DELIVERY</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">Cross-Border & Domestic Parcel Operations</div>
-                    <span class="item-location">กรุงเทพฯ, ไทย</span>
-                  </div>
+                  <span class="item-location">กรุงเทพฯ, ไทย</span>
                 </div>
+                <div class="item-title">Cross-Border & Domestic Parcel Operations</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/work-2019.jpg" alt="Parcel Operations" loading="eager" decoding="sync" />
@@ -687,16 +688,14 @@
 
             <div class="portfolio-card">
               <div class="portfolio-card-header">
-                <div class="header-main-info">
-                  <div class="header-top-row">
+                <div class="card-top-meta-row">
+                  <div class="meta-left-group">
                     <span class="item-year">2015</span>
-                    <span class="item-category">Global Warehouse Consolidation</span>
+                    <span class="item-category">GLOBAL WAREHOUSE CONSOLIDATION</span>
                   </div>
-                  <div class="title-location-wrap">
-                    <div class="item-title">International Buyer Consolidation</div>
-                    <span class="item-location">เมลเบิร์น & โคโลญจน์</span>
-                  </div>
+                  <span class="item-location">เมลเบิร์น & โคโลญจน์</span>
                 </div>
+                <div class="item-title">International Buyer Consolidation</div>
               </div>
               <div class="featured-blueprint">
                 <img src="/work-2015.jpg" alt="International Buyer Consolidation" loading="eager" decoding="sync" />
